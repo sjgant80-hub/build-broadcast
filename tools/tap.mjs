@@ -93,6 +93,7 @@ function gatesIn(log) {
   }
   return out;
 }
+let logsUnreachable = 0;   // a token without access to a run's logs cannot read its gate verdicts
 function fromGitHub(shas) {
   const events = [];
   if (!GH || flag('no-gh')) return events;
@@ -109,7 +110,9 @@ function fromGitHub(shas) {
         const steps = (job.steps || []).filter((st) => !SKIP.test(st.name) && st.conclusion !== 'skipped');
         events.push({ k: 'checks', sha: short, at: job.completed_at, workflow: name, total: steps.length, failedSteps: steps.filter((st) => st.conclusion === 'failure').map((st) => red(st.name)), src: 'gh:run/' + run.id + '/job/' + job.id });
         if (steps.some((st) => /witness|mutation/i.test(st.name))) {
-          for (const g of gatesIn(gh(`repos/${GH}/actions/jobs/${job.id}/logs`))) events.push({ k: 'gate', sha: short, at: job.completed_at, file: red(g.file), total: g.total, killed: g.killed, survived: g.survived, src: 'gh:run/' + run.id + '/job/' + job.id });
+          const text = gh(`repos/${GH}/actions/jobs/${job.id}/logs`);
+          if (text === null) logsUnreachable++;
+          for (const g of gatesIn(text)) events.push({ k: 'gate', sha: short, at: job.completed_at, file: red(g.file), total: g.total, killed: g.killed, survived: g.survived, src: 'gh:run/' + run.id + '/job/' + job.id });
         }
       }
     }
@@ -128,8 +131,15 @@ const file = OUT ? new URL('../' + OUT.replace(/^\/+/, ''), import.meta.url) : n
 
 if (flag('audit')) {
   const committed = JSON.parse(readFileSync(file, 'utf8'));
+  if (logsUnreachable > 0) {
+    // the gate verdicts live in the run logs this token cannot read: every other event is checked, and the gap is said
+    const notGate = (list) => list.filter((e) => e && e.k !== 'gate');
+    const r = B.auditLog(notGate(committed.events), notGate(events));
+    console.log(JSON.stringify({ id: ID, ...r, events: events.length, gatesNotRechecked: committed.events.filter((e) => e && e.k === 'gate').length, why: logsUnreachable + ' run logs could not be read with this token' }));
+    process.exit(r.ok ? 0 : 1);
+  }
   const r = B.auditLog(committed.events, events);
-  console.log(JSON.stringify({ id: ID, ...r, events: events.length }));
+  console.log(JSON.stringify({ id: ID, ...r, events: events.length, gatesNotRechecked: 0 }));
   process.exit(r.ok ? 0 : 1);
 }
 const text = JSON.stringify(log, null, 1);
