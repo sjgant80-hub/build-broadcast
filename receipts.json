@@ -31,5 +31,19 @@
    "vtt": 2787,
    "hash": "a3eef97cfb32199b"
   }
+ },
+ "law": {
+  "total": 140,
+  "killed": 140,
+  "survived": 0,
+  "ignored": 0,
+  "clean": true
+ },
+ "recorder": {
+  "total": 46,
+  "killed": 46,
+  "survived": 0,
+  "ignored": 0,
+  "clean": true
  }
 }

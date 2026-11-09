@@ -295,8 +295,8 @@ export function shortsOf(sc, min = 20, max = 40, count = 3) {
       if (d >= min) cands.push({ from: i, to: j, t: b[i].t, dur: Math.round(d * 10) / 10, score: sc0 });
     }
   });
-  // the best first; a tie goes to the earlier start, then to the shorter
-  cands.sort((x, y) => { if (y.score !== x.score) return y.score - x.score; if (x.from !== y.from) return x.from - y.from; return x.to - y.to; });
+  // the best first; the sort is stable, so a tie keeps the order the windows were made in: the earlier start, then the shorter
+  cands.sort((x, y) => y.score - x.score);
   const out = [];
   for (const c of cands) {
     if (out.length >= count) break;

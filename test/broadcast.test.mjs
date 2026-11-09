@@ -211,6 +211,8 @@ test('Shorts: the 20-40 s windows with the most happening, failures first, never
   assert.deepEqual(shortsOf({ beats }, 20, 40, 1).map((x) => x.from), [0]);
   assert.deepEqual(shortsOf({ beats }, 10, 10, 2).map((x) => [x.from, x.score]), [[1, 2], [2, 3]], 'exactly 10 s windows: the failure, then the gate');
   assert.deepEqual(shortsOf({ beats: [{ t: 0, dur: 5, kind: 'commit' }] }), [], 'nothing long enough');
+  const late = [0, 10, 20, 30].map((t) => ({ t, dur: 10, kind: 'commit' })).concat([{ t: 40, dur: 10, kind: 'claim', fail: true }, { t: 50, dur: 10, kind: 'gate' }, { t: 60, dur: 10, kind: 'commit' }]);
+  assert.deepEqual(shortsOf({ beats: late }, 20, 20, 1).map((x) => [x.from, x.to, x.score]), [[4, 5, 5]], 'the best window, even when it comes late');
   assert.deepEqual(shortsOf(null), []);
   assert.deepEqual(shortsOf({ beats: [{ t: 0, dur: 20, kind: 'x' }, { t: 20, dur: 20, kind: 'x' }] }, 20, 40, 3).map((x) => [x.from, x.to]), [[0, 1]], 'a tie: the earliest, then nothing that overlaps');
 });
