@@ -1,0 +1,11 @@
+{
+  "name": "build-broadcast",
+  "private": true,
+  "type": "module",
+  "description": "Watch the estate build something real, explained so a 12-year-old follows",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test test/broadcast.test.mjs test/recorder.test.mjs test/server.test.mjs test/page.test.mjs"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,7 @@
+{
+ "note": "Each episode is a real build's log, written by tools/tap.mjs from git history and GitHub's own run records, and checked by tools/tap.mjs --audit on GitHub's runner.",
+ "episodes": [
+  { "id": "fallgarden-live", "title": "FallGarden Live comes alive", "repo": "sjgant80-hub/fallgarden", "path": "live/" },
+  { "id": "fallaccount-trades", "title": "An accounts app for plumbers", "repo": "sjgant80-hub/fallaccount-trades", "path": "" }
+ ]
+}

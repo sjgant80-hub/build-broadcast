@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; worker-src 'self' blob:; base-uri 'none'; form-action 'none'">
+<title>Build Broadcast · watch a real build, explained simply</title>
+<meta name="description" content="Watch the estate build something real, explained so a 12-year-old can follow. Every part, link and light is a real build event; every line of narration says what really happened.">
+<style>
+:root{--bg:#07090f;--panel:#10131d;--line:rgba(200,210,255,.1);--text:#e8eaf2;--muted:#9097ab;--accent:#ffd685;--sky:#8cc7ff;--green:#5cf585;--red:#ff6a5c;--live:#ff5f57;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--sans:Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--bg:#f6f7fb;--panel:#ffffff;--line:rgba(20,30,60,.12);--text:#141827;--muted:#5b6275;--accent:#9a6a00;--sky:#1f5fae}}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 var(--sans)}
+a{color:var(--sky)}button{font:inherit;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:6px 11px;cursor:pointer}
+button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}button:disabled{opacity:.45;cursor:not-allowed}button.live{color:var(--live)}
+header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line)}
+.brand{font-weight:700;letter-spacing:.01em}.grow{flex:1}
+#eps{display:flex;flex-wrap:wrap;gap:6px}
+.wrap{max-width:1200px;margin:0 auto;padding:12px 16px}
+h1{font-size:24px;margin:6px 0 2px}#meta{color:var(--muted);font-family:var(--mono);font-size:12px}
+.label{display:inline-block;font-family:var(--mono);font-size:12px;padding:3px 8px;border-radius:5px;border:1px solid var(--sky);color:var(--sky);margin:8px 0}
+.label.live{border-color:var(--live);color:var(--live)}
+.stage{position:relative;width:100%;aspect-ratio:16/9;max-height:72vh;background:#05070e;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%}.stage .overlay{pointer-events:none}
+.capbar{position:absolute;left:0;right:0;bottom:0;padding:12px 18px 10px;background:linear-gradient(transparent,rgba(5,7,14,.88) 30%);pointer-events:none}
+#cap{font-size:clamp(16px,2.1vw,24px);font-weight:600;color:#f2f4fa;text-align:center;min-height:1.4em;text-shadow:0 1px 3px #000}#cap.fail{color:var(--red)}
+#capsub{font-family:var(--mono);font-size:11px;color:#9fb4d9;text-align:center;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.engine{position:absolute;left:10px;top:8px;font-family:var(--mono);font-size:10.5px;color:#7d86a0;max-width:70%}
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
+.controls input[type=range]{flex:1;min-width:160px;accent-color:var(--accent)}#pos{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.strip{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:6px 10px;font-family:var(--mono);font-size:12px}
+.strip .lines div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--sky);opacity:.6;cursor:help}.strip .lines div:last-child{opacity:1}
+#lineread{color:var(--accent);min-height:1.4em}#recnote{font-family:var(--mono);font-size:12px;color:var(--muted)}
+main section{max-width:880px;margin:30px auto;padding:0 16px}h2{font-size:20px;margin:0 0 8px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}.card{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:12px}
+.card h3{margin:0 0 4px;font-size:15px}.card p{margin:0;color:var(--muted);font-size:13.5px}
+.muted{color:var(--muted)}code{font-family:var(--mono);font-size:.92em}
+.svgwrap{overflow-x:auto}svg text{fill:var(--text)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}td,th{border-top:1px solid var(--line);padding:6px;text-align:left;vertical-align:top}
+@media (max-width:700px){.stage{aspect-ratio:4/3}header{gap:6px}}
+</style>
+</head>
+<body>
+<header>
+  <span class="brand">Build Broadcast</span><span class="muted">watch a real build, explained simply</span><span class="grow"></span>
+  <div id="eps" role="group" aria-label="Episodes"></div>
+</header>
+<div class="wrap">
+  <h1 id="title">…</h1>
+  <div id="meta">loading the build log…</div>
+  <span class="label" id="label" role="status">…</span>
+  <div class="stage" id="stage">
+    <canvas id="gl" aria-label="The build, drawn as a living organism"></canvas>
+    <canvas id="overlay" class="overlay" aria-hidden="true"></canvas>
+    <div class="engine" id="engine">starting…</div>
+    <div class="capbar"><div id="cap" aria-live="polite"></div><div id="capsub"></div></div>
+  </div>
+  <div class="controls">
+    <button id="play">▶ Play</button><button id="restart" title="Start the episode again">↺ From the start</button>
+    <input id="scrub" type="range" min="0" max="0" value="0" aria-label="Where in the episode"><span id="pos">0:00</span>
+    <label class="muted">speed <select id="speed" aria-label="Playback speed"><option value="1">1×</option><option value="2">2×</option><option value="4">4×</option></select></label>
+    <button id="voice" aria-pressed="false">🔊 Voice</button><button id="fit" title="See the whole build">⤢ Fit</button>
+    <button id="record" title="Draw the whole episode on a fixed clock into a video file">● Record the episode</button>
+  </div>
+  <div id="recnote" role="status"></div>
+  <div class="strip" aria-label="The LIGHT strip"><div class="muted">THE LIGHT STRIP · each event's real message, in LIGHT · hover a line to read it</div><div class="lines" id="lines"></div><div id="lineread"></div></div>
+  <h2 style="margin-top:18px;font-size:16px">Shorts from this episode</h2>
+  <ul id="shorts"></ul>
+</div>
+
+<main>
+<section id="what">
+  <h2>What this is</h2>
+  <p>A way to watch a real build happen, explained so a 12-year-old can follow. The picture is the build growing as a living thing: each new part appears, links light up as parts start working together, the checking robot opens its eye, the gate tries to break things on purpose, and anything that fails turns red. Under it, a narrator says what just happened in one or two plain sentences.</p>
+  <p><b>Everything you see and hear really happened.</b> It comes from the build's own records: its saved history and GitHub's record of every check. Nothing is scripted, and a replay is always labelled RECORDED. LIVE only ever means a build happening right now.</p>
+</section>
+<section id="start">
+  <h2>Start here</h2>
+  <ol>
+    <li>Pick an episode at the top. Each one is a real build.</li>
+    <li>Press <b>▶ Play</b>. Read the line at the bottom of the picture, or press <b>🔊 Voice</b> to hear it (only a voice on your own device is used).</li>
+    <li>Under each line, <b>the real record</b> shows where it came from: the saved step, or the check, it describes.</li>
+    <li>Hover a line in the <b>LIGHT strip</b> to read the message behind it.</li>
+    <li>Try a <b>Short</b>: the 20 to 40 seconds of the episode with the most happening.</li>
+    <li><b>● Record the episode</b> draws it into a video file you can keep, with its captions.</li>
+  </ol>
+</section>
+<section id="how">
+  <h2>How it works</h2>
+  <div class="svgwrap" role="img" aria-label="The build's own records go to the tap, which writes a build log; the law turns the log into the picture's events and the narrator's lines, timed into a script; the page plays the script or records it">
+  <svg viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, sans-serif" font-size="13">
+    <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8a92a8"/></marker></defs>
+    <g fill="none" stroke="#8cc7ff"><rect x="10" y="30" width="170" height="60" rx="8"/><rect x="10" y="110" width="170" height="60" rx="8"/></g>
+    <text x="22" y="55">The saved history</text><text x="22" y="74" font-size="11" opacity=".7">every step, file, link</text>
+    <text x="22" y="135">GitHub's checks</text><text x="22" y="154" font-size="11" opacity=".7">every check, every gate</text>
+    <rect x="230" y="70" width="150" height="60" rx="8" fill="none" stroke="#ffd685"/><text x="242" y="96">the tap</text><text x="242" y="114" font-size="11" opacity=".7">redacts, then writes</text>
+    <rect x="430" y="70" width="150" height="60" rx="8" fill="none" stroke="#ffd685"/><text x="442" y="96">the build log</text><text x="442" y="114" font-size="11" opacity=".7">each event + its source</text>
+    <rect x="630" y="20" width="250" height="60" rx="8" fill="none" stroke="#5cf585"/><text x="642" y="46">the picture (Living Visual)</text><text x="642" y="64" font-size="11" opacity=".7">every cell and light = an event</text>
+    <rect x="630" y="120" width="250" height="60" rx="8" fill="none" stroke="#5cf585"/><text x="642" y="146">the narrator</text><text x="642" y="164" font-size="11" opacity=".7">one plain line per moment</text>
+    <g stroke="#8a92a8" fill="none" marker-end="url(#ar)"><path d="M180,60 L230,95"/><path d="M180,140 L230,105"/><path d="M380,100 L430,100"/><path d="M580,95 L630,55"/><path d="M580,105 L630,145"/></g>
+  </svg></div>
+  <ol>
+    <li><b>The tap</b> (<code>tools/tap.mjs</code>) reads a build's saved history and GitHub's own record of its checks. Each saved step, each new file, each new link between files, each promise and each check becomes an event, and each event names where it came from. Before anything is written, it hides anything secret and any private name.</li>
+    <li><b>The law</b> (<code>broadcast.mjs</code>) turns the log into the picture's events and the narrator's lines, and times them into a script. The same log always gives the same script, and the page shows the script's fingerprint.</li>
+    <li><b>The picture</b> is FallGarden Live's Living Visual, copied byte for byte. It draws only what the script says happened.</li>
+    <li><b>The recorder</b> draws the script into a video, frame by frame, on a fixed clock of 30 frames a second. The same log gives the same frames, which is checked frame by frame.</li>
+  </ol>
+</section>
+<section id="narrator">
+  <h2>The narrator's rules</h2>
+  <ul>
+    <li>Every line comes from one real event, filled in with that event's own details: the file, the count, the check. No event means no line.</li>
+    <li>Short sentences and everyday words. Every line is checked to read at age 12 or under (grade 7 or below on the Flesch-Kincaid scale). A hard word is allowed only with "which means…" straight after it.</li>
+    <li>Pictures in words: the gate tests the tests by breaking things on purpose; the checking robot checks it actually works before we keep it; parts that start working together pass work along "with no boss in the middle".</li>
+    <li>Failures are said plainly: what broke, and what happens next. A promise that did not hold is said out loud and kept, so nobody is fooled.</li>
+  </ul>
+</section>
+<section id="blueprint">
+  <h2>Blueprint</h2>
+  <div class="cards">
+    <div class="card"><h3>tools/tap.mjs</h3><p>The event tap: git history and GitHub's run records (read only) into a build log, redacted. With <code>--audit</code> it derives everything again and compares, event by event.</p></div>
+    <div class="card"><h3>broadcast.mjs</h3><p>The law: redaction, plain words, the narrator, the beats, the picture's events, the script and its fingerprint, the captions, the Shorts, the RECORDED and LIVE labels. Mutation-gated in CI.</p></div>
+    <div class="card"><h3>recorder.mjs</h3><p>The video file: the browser's own encoder, laid into WebM with exact timestamps, and the frame fingerprint used to check two recordings match.</p></div>
+    <div class="card"><h3>organism, living, physics, engine, kernel</h3><p>FallGarden Live's Living Visual and its kernel, copied byte for byte, with their fingerprints pinned in <code>SOURCES.json</code>.</p></div>
+    <div class="card"><h3>server.mjs (on your machine only)</h3><p>Plays a build LIVE from the tap as it happens, and saves recordings to your disk. It answers only your own machine.</p></div>
+  </div>
+</section>
+<section id="adoption">
+  <h2>For your business</h2>
+  <p>When we build a tool for you, you can watch it being built and proven, in plain words, before you rely on it. Each check it passed, each thing that broke and was fixed, and each promise kept or failed is shown and said. A private cut of your own build is made only with your consent, stays on your machine, and is never published. Your records never leave it: the tap reads them locally, and the page talks to nothing else.</p>
+  <p class="muted">Public episodes here show public builds only. Streaming a build live, posting Shorts, and any client cut are decided by Simon, case by case.</p>
+</section>
+<section id="limits">
+  <h2>Honest rules, and the limits plainly</h2>
+  <ul>
+    <li><b>Real events only.</b> Each line and each light comes from the build's own records, with its source shown. <code>tools/tap.mjs --audit</code> re-derives every event on GitHub's own computer and checks it.</li>
+    <li><b>Live is labelled live.</b> A replay always says RECORDED with the steps it covers. LIVE appears only for the local tap watching a build right now.</li>
+    <li><b>The voice is not in the video file.</b> A browser cannot record its own speech. The video carries the narration as words on the picture and as a caption file. Add a voice yourself, or turn on Voice while watching.</li>
+    <li><b>Without WebGPU</b> the same build is drawn on a plainer 2D canvas, and the note on the picture says so. There is no video stand-in.</li>
+  </ul>
+  <p class="muted" id="receipts">…</p>
+</section>
+<section id="credits">
+  <p class="muted">Build Broadcast · MIT · <a href="https://github.com/sjgant80-hub/build-broadcast">source</a> · claims sealed before code in <code>CLAIMS.md</code>; results in <code>RESULTS.md</code>. Built on FallGarden Live. LIGHT is Thomas Frumkin's; this codec comes from konomi-tongue, used with permission.</p>
+</section>
+</main>
+<script type="module" src="./app.mjs"></script>
+</body>
+</html>

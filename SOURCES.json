@@ -1,0 +1,54 @@
+{
+ "note": "Built on FallGarden Live, not beside it: these files are its own, byte for byte. test/pins.test.mjs checks every sha256.",
+ "from": "sjgant80-hub/fallgarden @ 775c3fa (live/)",
+ "files": [
+  {
+   "path": "kernel.mjs",
+   "from": "fallgarden live/kernel.mjs @775c3fa",
+   "sha256": "a3bc2eafa2069d5123b0b7406022c038c3c78f0311ee2867a374dced1c25f97f",
+   "what": "the kernel: events, the state they build, each event's message and plain words"
+  },
+  {
+   "path": "engine.mjs",
+   "from": "fallgarden live/engine.mjs @775c3fa",
+   "sha256": "20209deb1399a55cf536469a5ea721f0afb347d8f200d4c866435f70239bb39e",
+   "what": "chooses the renderer: the living organism with WebGPU, else the plainer 2D canvas"
+  },
+  {
+   "path": "organism.mjs",
+   "from": "fallgarden live/organism.mjs @775c3fa",
+   "sha256": "20d933ff9726ed11cbde5978992fe774588a0a4837a1d3ab74437b0107ae4f85",
+   "what": "the Living Visual's renderer"
+  },
+  {
+   "path": "living.mjs",
+   "from": "fallgarden live/living.mjs @775c3fa",
+   "sha256": "29be530ad20656ca42e398822432bd636de14f26dce5481c8d266b599bada93d",
+   "what": "the Living Visual's law (witness 144/144 in fallgarden's CI)"
+  },
+  {
+   "path": "physics.mjs",
+   "from": "fallgarden live/physics.mjs @775c3fa",
+   "sha256": "0581fb963f0cdff012d2364685a4aa3c0e796a8922b6c45daa11d9901aed3ce9",
+   "what": "the compute shader's law, in plain JavaScript"
+  },
+  {
+   "path": "dict.mjs",
+   "from": "fallgarden live/dict.mjs @775c3fa",
+   "sha256": "8d3fb2901b174962b29de0138dbd81003173860711d95ba643175acd6060744d",
+   "what": "the LIGHT stream's shared dictionary"
+  },
+  {
+   "path": "vendor/patlib.mjs",
+   "from": "fallgarden live/vendor/patlib.mjs @775c3fa",
+   "sha256": "b04c5e35a3612f353906ed84a6f0f4e316f30d645735779e191f9f9cebbfe73b",
+   "what": "the pattern library's gate; the kernel imports it"
+  },
+  {
+   "path": "vendor/light-codec.mjs",
+   "from": "fallgarden live/vendor/light-codec.mjs @775c3fa",
+   "sha256": "4f018272a05989fe8fbd0f675e0460b35365710a174a88dbf628165ef21f431d",
+   "what": "LIGHT, Thomas Frumkin's codec (from konomi-tongue, used with permission)"
+  }
+ ]
+}

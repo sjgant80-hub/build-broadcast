@@ -1,0 +1,36 @@
+name: proof-of-play
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      # claims sealed in CLAIMS.md (7081f1a) before any code
+      - name: the law, the recorder, the server and the page against their tests
+        run: node --test test/broadcast.test.mjs test/recorder.test.mjs test/server.test.mjs test/page.test.mjs
+      - name: witness the law (must be CLEAN, nothing baselined)
+        run: |
+          git clone --depth 1 --branch v0.6 https://github.com/sjgant80-hub/witness.git /tmp/witness
+          node /tmp/witness/witness.mjs mutate broadcast.mjs --timeout 60000 --cap 1500 --test node --test test/broadcast.test.mjs | tee law-verdict.txt
+          grep -q '"clean": true' law-verdict.txt || { echo "::error::mutants survived in broadcast.mjs"; exit 1; }
+          grep -q '"ignored": \[\]' law-verdict.txt || { echo "::error::something was baselined"; exit 1; }
+      - name: witness the recorder (must be CLEAN, nothing baselined)
+        run: |
+          node /tmp/witness/witness.mjs mutate recorder.mjs --timeout 60000 --cap 1000 --test node --test test/recorder.test.mjs | tee rec-verdict.txt
+          grep -q '"clean": true' rec-verdict.txt || { echo "::error::mutants survived in recorder.mjs"; exit 1; }
+          grep -q '"ignored": \[\]' rec-verdict.txt || { echo "::error::something was baselined"; exit 1; }
+      - name: B4 — every episode's script fingerprint matches its receipt
+        run: node tools/receipts.mjs --check
+      - name: B1 — every event of every committed log, re-derived from the real repos and GitHub's own records
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git clone -q https://github.com/sjgant80-hub/fallgarden.git /tmp/fallgarden
+          git clone -q https://github.com/sjgant80-hub/fallaccount-trades.git /tmp/fallaccount-trades
+          node tools/tap.mjs --repo /tmp/fallgarden --gh sjgant80-hub/fallgarden --path live/ --id fallgarden-live --audit
+          node tools/tap.mjs --repo /tmp/fallaccount-trades --gh sjgant80-hub/fallaccount-trades --id fallaccount-trades --audit

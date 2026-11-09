@@ -1,0 +1,495 @@
+{
+ "v": 1,
+ "id": "fallaccount-trades",
+ "title": "FallAccount Trades, an accounts app for builders and plumbers",
+ "repo": "sjgant80-hub/fallaccount-trades",
+ "path": "",
+ "from": "f08ef90",
+ "to": "dfe9942",
+ "events": [
+  {
+   "k": "commit",
+   "sha": "f08ef90",
+   "at": "2026-05-28T14:04:54+07:00",
+   "msg": "FallAccount Trades v1.0.0 — sovereign single-file",
+   "files": [
+    {
+     "path": ".gitignore",
+     "s": "A"
+    },
+    {
+     "path": "FOR-IVAN.md",
+     "s": "A"
+    },
+    {
+     "path": "LICENSE",
+     "s": "A"
+    },
+    {
+     "path": "README.md",
+     "s": "A"
+    },
+    {
+     "path": "index.html",
+     "s": "A"
+    }
+   ],
+   "src": "git:f08ef90"
+  },
+  {
+   "k": "node",
+   "sha": "f08ef90",
+   "at": "2026-05-28T14:04:54+07:00",
+   "path": ".gitignore",
+   "src": "git:f08ef90:.gitignore"
+  },
+  {
+   "k": "node",
+   "sha": "f08ef90",
+   "at": "2026-05-28T14:04:54+07:00",
+   "path": "FOR-IVAN.md",
+   "src": "git:f08ef90:FOR-IVAN.md"
+  },
+  {
+   "k": "node",
+   "sha": "f08ef90",
+   "at": "2026-05-28T14:04:54+07:00",
+   "path": "LICENSE",
+   "src": "git:f08ef90:LICENSE"
+  },
+  {
+   "k": "node",
+   "sha": "f08ef90",
+   "at": "2026-05-28T14:04:54+07:00",
+   "path": "README.md",
+   "src": "git:f08ef90:README.md"
+  },
+  {
+   "k": "node",
+   "sha": "f08ef90",
+   "at": "2026-05-28T14:04:54+07:00",
+   "path": "index.html",
+   "src": "git:f08ef90:index.html"
+  },
+  {
+   "k": "commit",
+   "sha": "ad3a6a3",
+   "at": "2026-05-28T14:06:29+07:00",
+   "msg": "Brand → FallAccount Trades (one name, treat it as the product)",
+   "files": [
+    {
+     "path": "README.md",
+     "s": "M"
+    },
+    {
+     "path": "index.html",
+     "s": "M"
+    }
+   ],
+   "src": "git:ad3a6a3"
+  },
+  {
+   "k": "commit",
+   "sha": "74b9cf8",
+   "at": "2026-05-28T14:20:05+07:00",
+   "msg": "ci: GitHub Actions Pages deploy workflow",
+   "files": [
+    {
+     "path": ".github/workflows/pages.yml",
+     "s": "A"
+    }
+   ],
+   "src": "git:74b9cf8"
+  },
+  {
+   "k": "node",
+   "sha": "74b9cf8",
+   "at": "2026-05-28T14:20:05+07:00",
+   "path": ".github/workflows/pages.yml",
+   "src": "git:74b9cf8:.github/workflows/pages.yml"
+  },
+  {
+   "k": "commit",
+   "sha": "2ebb009",
+   "at": "2026-05-28T14:22:21+07:00",
+   "msg": "deploy: .nojekyll + revert to estate Pages pattern",
+   "files": [
+    {
+     "path": ".github/workflows/pages.yml",
+     "s": "D"
+    },
+    {
+     "path": ".nojekyll",
+     "s": "A"
+    }
+   ],
+   "src": "git:2ebb009"
+  },
+  {
+   "k": "node",
+   "sha": "2ebb009",
+   "at": "2026-05-28T14:22:21+07:00",
+   "path": ".nojekyll",
+   "src": "git:2ebb009:.nojekyll"
+  },
+  {
+   "k": "commit",
+   "sha": "1f83654",
+   "at": "2026-05-28T14:34:37+07:00",
+   "msg": "v1.1.0 — full estate power · hidden under one bar",
+   "files": [
+    {
+     "path": "index.html",
+     "s": "M"
+    }
+   ],
+   "src": "git:1f83654"
+  },
+  {
+   "k": "commit",
+   "sha": "d366fd6",
+   "at": "2026-05-28T14:37:41+07:00",
+   "msg": "v1.2.0 — vision via cascade · any provider, same parse",
+   "files": [
+    {
+     "path": "index.html",
+     "s": "M"
+    }
+   ],
+   "src": "git:d366fd6"
+  },
+  {
+   "k": "commit",
+   "sha": "4812c2c",
+   "at": "2026-05-30T22:15:26+07:00",
+   "msg": "ripple · inject fallcompass-shim · 8-provider LLM cascade defense · ◊·κ=1",
+   "files": [
+    {
+     "path": "index.html",
+     "s": "M"
+    }
+   ],
+   "src": "git:4812c2c"
+  },
+  {
+   "k": "commit",
+   "sha": "3720106",
+   "at": "2026-06-20T19:21:13+01:00",
+   "msg": "fix: hoist Cascade with window.Cascade pattern + defensive padEnd in exportMTD",
+   "files": [
+    {
+     "path": ".gitignore",
+     "s": "M"
+    },
+    {
+     "path": "index.html",
+     "s": "M"
+    }
+   ],
+   "src": "git:3720106"
+  },
+  {
+   "k": "commit",
+   "sha": "db22834",
+   "at": "2026-06-20T19:29:02+01:00",
+   "msg": "add: super-simple How tab for tradies",
+   "files": [
+    {
+     "path": "index.html",
+     "s": "M"
+    }
+   ],
+   "src": "git:db22834"
+  },
+  {
+   "k": "commit",
+   "sha": "70b40b7",
+   "at": "2026-06-22T16:59:56+01:00",
+   "msg": "fall-kit v1.1.0 ported inline · cascade + mesh on every seed",
+   "files": [
+    {
+     "path": "index.html",
+     "s": "M"
+    }
+   ],
+   "src": "git:70b40b7"
+  },
+  {
+   "k": "commit",
+   "sha": "aee3a88",
+   "at": "2026-06-22T17:32:58+01:00",
+   "msg": "fall-kit v1.2.0 · adds ✦ mint-fork button (KCC Mint provenance economy)",
+   "files": [
+    {
+     "path": "index.html",
+     "s": "M"
+    }
+   ],
+   "src": "git:aee3a88"
+  },
+  {
+   "k": "commit",
+   "sha": "017bc6f",
+   "at": "2026-07-10T12:28:34+01:00",
+   "msg": "Wire fall-autopilot-kit · Wave 3 · T1 assisted",
+   "files": [
+    {
+     "path": "index.html",
+     "s": "M"
+    }
+   ],
+   "src": "git:017bc6f"
+  },
+  {
+   "k": "commit",
+   "sha": "e019a39",
+   "at": "2026-07-10T16:52:09+01:00",
+   "msg": "Wire fall-cascade shim - BYOK 5-modality",
+   "files": [
+    {
+     "path": "index.html",
+     "s": "M"
+    }
+   ],
+   "src": "git:e019a39"
+  },
+  {
+   "k": "commit",
+   "sha": "1485ce7",
+   "at": "2026-07-10T20:47:32+01:00",
+   "msg": "Scrub pricing · TBA until confirmed",
+   "files": [
+    {
+     "path": "FOR-IVAN.md",
+     "s": "M"
+    },
+    {
+     "path": "README.md",
+     "s": "M"
+    },
+    {
+     "path": "index.html",
+     "s": "M"
+    }
+   ],
+   "src": "git:1485ce7"
+  },
+  {
+   "k": "commit",
+   "sha": "c9cc416",
+   "at": "2026-07-24T20:10:19+01:00",
+   "msg": "README: add standard Live app link",
+   "files": [
+    {
+     "path": "README.md",
+     "s": "M"
+    }
+   ],
+   "src": "git:c9cc416"
+  },
+  {
+   "k": "deploy",
+   "sha": "1544107",
+   "at": "2026-08-14T10:47:55Z",
+   "state": "ok",
+   "workflow": "pages build and deployment",
+   "src": "gh:run/31793619365"
+  },
+  {
+   "k": "commit",
+   "sha": "1544107",
+   "at": "2026-08-14T11:47:27+01:00",
+   "msg": "the injector had cut this app in half",
+   "files": [
+    {
+     "path": "index.html",
+     "s": "M"
+    }
+   ],
+   "src": "git:1544107"
+  },
+  {
+   "k": "deploy",
+   "sha": "6c1dae4",
+   "at": "2026-09-16T19:18:15Z",
+   "state": "cancelled",
+   "workflow": "pages build and deployment",
+   "src": "gh:run/35139725272"
+  },
+  {
+   "k": "deploy",
+   "sha": "ad50e4f",
+   "at": "2026-09-16T19:18:25Z",
+   "state": "cancelled",
+   "workflow": "pages build and deployment",
+   "src": "gh:run/35139737860"
+  },
+  {
+   "k": "deploy",
+   "sha": "fe2bad7",
+   "at": "2026-09-16T19:18:55Z",
+   "state": "ok",
+   "workflow": "pages build and deployment",
+   "src": "gh:run/35139750249"
+  },
+  {
+   "k": "commit",
+   "sha": "6c1dae4",
+   "at": "2026-09-16T20:17:56+01:00",
+   "msg": "add AI/GEO kit: robots.txt — llms.txt/robots/sitemap for AI-search discoverability",
+   "files": [
+    {
+     "path": "robots.txt",
+     "s": "A"
+    }
+   ],
+   "src": "git:6c1dae4"
+  },
+  {
+   "k": "node",
+   "sha": "6c1dae4",
+   "at": "2026-09-16T20:17:56+01:00",
+   "path": "robots.txt",
+   "src": "git:6c1dae4:robots.txt"
+  },
+  {
+   "k": "commit",
+   "sha": "ad50e4f",
+   "at": "2026-09-16T20:18:03+01:00",
+   "msg": "add AI/GEO kit: llms.txt — llms.txt/robots/sitemap for AI-search discoverability",
+   "files": [
+    {
+     "path": "llms.txt",
+     "s": "A"
+    }
+   ],
+   "src": "git:ad50e4f"
+  },
+  {
+   "k": "node",
+   "sha": "ad50e4f",
+   "at": "2026-09-16T20:18:03+01:00",
+   "path": "llms.txt",
+   "src": "git:ad50e4f:llms.txt"
+  },
+  {
+   "k": "commit",
+   "sha": "fe2bad7",
+   "at": "2026-09-16T20:18:11+01:00",
+   "msg": "add AI/GEO kit: sitemap.xml — llms.txt/robots/sitemap for AI-search discoverability",
+   "files": [
+    {
+     "path": "sitemap.xml",
+     "s": "A"
+    }
+   ],
+   "src": "git:fe2bad7"
+  },
+  {
+   "k": "node",
+   "sha": "fe2bad7",
+   "at": "2026-09-16T20:18:11+01:00",
+   "path": "sitemap.xml",
+   "src": "git:fe2bad7:sitemap.xml"
+  },
+  {
+   "k": "deploy",
+   "sha": "5c2e55b",
+   "at": "2026-09-25T18:04:52Z",
+   "state": "ok",
+   "workflow": "pages build and deployment",
+   "src": "gh:run/36171105293"
+  },
+  {
+   "k": "commit",
+   "sha": "5c2e55b",
+   "at": "2026-09-25T19:04:20+01:00",
+   "msg": "palette: define --border (was used ×6, never defined → fell back to currentColor)",
+   "files": [
+    {
+     "path": "index.html",
+     "s": "M"
+    }
+   ],
+   "src": "git:5c2e55b"
+  },
+  {
+   "k": "deploy",
+   "sha": "91df509",
+   "at": "2026-10-23T19:15:49Z",
+   "state": "ok",
+   "workflow": "pages build and deployment",
+   "src": "gh:run/40009952081"
+  },
+  {
+   "k": "commit",
+   "sha": "91df509",
+   "at": "2026-10-23T20:15:04+01:00",
+   "msg": "Lego socket: Fall Kit v3.1 and kard.json",
+   "files": [
+    {
+     "path": "index.html",
+     "s": "M"
+    },
+    {
+     "path": "kard.json",
+     "s": "A"
+    }
+   ],
+   "src": "git:91df509"
+  },
+  {
+   "k": "node",
+   "sha": "91df509",
+   "at": "2026-10-23T20:15:04+01:00",
+   "path": "kard.json",
+   "src": "git:91df509:kard.json"
+  },
+  {
+   "k": "deploy",
+   "sha": "9bcf02f",
+   "at": "2026-10-24T09:32:12Z",
+   "state": "ok",
+   "workflow": "pages build and deployment",
+   "src": "gh:run/40082312467"
+  },
+  {
+   "k": "commit",
+   "sha": "9bcf02f",
+   "at": "2026-10-24T10:31:42+01:00",
+   "msg": "Take off the autopilot button: none of its actions were wired",
+   "files": [
+    {
+     "path": "index.html",
+     "s": "M"
+    }
+   ],
+   "src": "git:9bcf02f"
+  },
+  {
+   "k": "commit",
+   "sha": "dfe9942",
+   "at": "2026-10-26T14:02:07Z",
+   "msg": "Fall Kit 3.2.0: the same-device mesh speaks LIGHT",
+   "files": [
+    {
+     "path": "index.html",
+     "s": "M"
+    },
+    {
+     "path": "kard.json",
+     "s": "M"
+    }
+   ],
+   "src": "git:dfe9942"
+  },
+  {
+   "k": "deploy",
+   "sha": "dfe9942",
+   "at": "2026-10-26T14:02:39Z",
+   "state": "ok",
+   "workflow": "pages build and deployment",
+   "src": "gh:run/40335896269"
+  }
+ ]
+}

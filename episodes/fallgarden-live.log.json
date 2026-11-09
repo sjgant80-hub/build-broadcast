@@ -1,0 +1,1294 @@
+{
+ "v": 1,
+ "id": "fallgarden-live",
+ "title": "FallGarden Live, and how it came alive",
+ "repo": "sjgant80-hub/fallgarden",
+ "path": "live/",
+ "from": "6969582",
+ "to": "5de92da",
+ "events": [
+  {
+   "k": "commit",
+   "sha": "6969582",
+   "at": "2026-11-09T02:43:10Z",
+   "msg": "FallGarden Live: seal the claims (G1-G9) before any code",
+   "files": [
+    {
+     "path": "live/CLAIMS.md",
+     "s": "A"
+    }
+   ],
+   "src": "git:6969582"
+  },
+  {
+   "k": "node",
+   "sha": "6969582",
+   "at": "2026-11-09T02:43:10Z",
+   "path": "live/CLAIMS.md",
+   "src": "git:6969582:live/CLAIMS.md"
+  },
+  {
+   "k": "seal",
+   "sha": "6969582",
+   "at": "2026-11-09T02:43:10Z",
+   "path": "live/CLAIMS.md",
+   "src": "git:6969582:live/CLAIMS.md"
+  },
+  {
+   "k": "checks",
+   "sha": "6969582",
+   "at": "2026-11-09T02:43:28Z",
+   "workflow": "proof-of-play",
+   "total": 3,
+   "failedSteps": [],
+   "src": "gh:run/42552467227/job/128950858314"
+  },
+  {
+   "k": "gate",
+   "sha": "6969582",
+   "at": "2026-11-09T02:43:28Z",
+   "file": "garden.mjs",
+   "total": 9,
+   "killed": 9,
+   "survived": 0,
+   "src": "gh:run/42552467227/job/128950858314"
+  },
+  {
+   "k": "deploy",
+   "sha": "6969582",
+   "at": "2026-11-09T02:43:33Z",
+   "state": "ok",
+   "workflow": "publish",
+   "src": "gh:run/42552467230"
+  },
+  {
+   "k": "deploy",
+   "sha": "6969582",
+   "at": "2026-11-09T02:43:40Z",
+   "state": "ok",
+   "workflow": "pages build and deployment",
+   "src": "gh:run/42552465828"
+  },
+  {
+   "k": "commit",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "msg": "FallGarden Live: the estate running, a company grown from one seed, your build simulated",
+   "files": [
+    {
+     "path": "live/app.mjs",
+     "s": "A"
+    },
+    {
+     "path": "live/data/estate.json",
+     "s": "A"
+    },
+    {
+     "path": "live/data/sample-process.json",
+     "s": "A"
+    },
+    {
+     "path": "live/dict.mjs",
+     "s": "A"
+    },
+    {
+     "path": "live/engine.mjs",
+     "s": "A"
+    },
+    {
+     "path": "live/grow-worker.mjs",
+     "s": "A"
+    },
+    {
+     "path": "live/index.html",
+     "s": "A"
+    },
+    {
+     "path": "live/kernel.mjs",
+     "s": "A"
+    },
+    {
+     "path": "live/kernel.test.mjs",
+     "s": "A"
+    },
+    {
+     "path": "live/receipts.json",
+     "s": "A"
+    },
+    {
+     "path": "live/tools/hashes.mjs",
+     "s": "A"
+    },
+    {
+     "path": "live/tools/sample.mjs",
+     "s": "A"
+    },
+    {
+     "path": "live/tools/snapshot.mjs",
+     "s": "A"
+    },
+    {
+     "path": "live/vendor.test.mjs",
+     "s": "A"
+    },
+    {
+     "path": "live/vendor/SOURCES.json",
+     "s": "A"
+    },
+    {
+     "path": "live/vendor/light-codec.mjs",
+     "s": "A"
+    },
+    {
+     "path": "live/vendor/patlib.mjs",
+     "s": "A"
+    }
+   ],
+   "src": "git:8487260"
+  },
+  {
+   "k": "node",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "path": "live/app.mjs",
+   "src": "git:8487260:live/app.mjs"
+  },
+  {
+   "k": "node",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "path": "live/data/estate.json",
+   "src": "git:8487260:live/data/estate.json"
+  },
+  {
+   "k": "node",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "path": "live/data/sample-process.json",
+   "src": "git:8487260:live/data/sample-process.json"
+  },
+  {
+   "k": "node",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "path": "live/dict.mjs",
+   "src": "git:8487260:live/dict.mjs"
+  },
+  {
+   "k": "node",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "path": "live/engine.mjs",
+   "src": "git:8487260:live/engine.mjs"
+  },
+  {
+   "k": "node",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "path": "live/grow-worker.mjs",
+   "src": "git:8487260:live/grow-worker.mjs"
+  },
+  {
+   "k": "node",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "path": "live/index.html",
+   "src": "git:8487260:live/index.html"
+  },
+  {
+   "k": "node",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "path": "live/kernel.mjs",
+   "src": "git:8487260:live/kernel.mjs"
+  },
+  {
+   "k": "node",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "path": "live/kernel.test.mjs",
+   "src": "git:8487260:live/kernel.test.mjs"
+  },
+  {
+   "k": "node",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "path": "live/receipts.json",
+   "src": "git:8487260:live/receipts.json"
+  },
+  {
+   "k": "node",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "path": "live/tools/hashes.mjs",
+   "src": "git:8487260:live/tools/hashes.mjs"
+  },
+  {
+   "k": "node",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "path": "live/tools/sample.mjs",
+   "src": "git:8487260:live/tools/sample.mjs"
+  },
+  {
+   "k": "node",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "path": "live/tools/snapshot.mjs",
+   "src": "git:8487260:live/tools/snapshot.mjs"
+  },
+  {
+   "k": "node",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "path": "live/vendor.test.mjs",
+   "src": "git:8487260:live/vendor.test.mjs"
+  },
+  {
+   "k": "node",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "path": "live/vendor/SOURCES.json",
+   "src": "git:8487260:live/vendor/SOURCES.json"
+  },
+  {
+   "k": "node",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "path": "live/vendor/light-codec.mjs",
+   "src": "git:8487260:live/vendor/light-codec.mjs"
+  },
+  {
+   "k": "node",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "path": "live/vendor/patlib.mjs",
+   "src": "git:8487260:live/vendor/patlib.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "from": "live/app.mjs",
+   "to": "live/dict.mjs",
+   "src": "git:8487260:live/app.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "from": "live/app.mjs",
+   "to": "live/engine.mjs",
+   "src": "git:8487260:live/app.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "from": "live/app.mjs",
+   "to": "live/grow-worker.mjs",
+   "src": "git:8487260:live/app.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "from": "live/app.mjs",
+   "to": "live/kernel.mjs",
+   "src": "git:8487260:live/app.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "from": "live/app.mjs",
+   "to": "live/vendor/light-codec.mjs",
+   "src": "git:8487260:live/app.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "from": "live/engine.mjs",
+   "to": "live/kernel.mjs",
+   "src": "git:8487260:live/engine.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "from": "live/grow-worker.mjs",
+   "to": "live/data/estate.json",
+   "src": "git:8487260:live/grow-worker.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "from": "live/grow-worker.mjs",
+   "to": "live/kernel.mjs",
+   "src": "git:8487260:live/grow-worker.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "from": "live/index.html",
+   "to": "live/app.mjs",
+   "src": "git:8487260:live/index.html"
+  },
+  {
+   "k": "wire",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "from": "live/kernel.mjs",
+   "to": "live/vendor/patlib.mjs",
+   "src": "git:8487260:live/kernel.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "from": "live/kernel.test.mjs",
+   "to": "live/kernel.mjs",
+   "src": "git:8487260:live/kernel.test.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "from": "live/kernel.test.mjs",
+   "to": "live/vendor/patlib.mjs",
+   "src": "git:8487260:live/kernel.test.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "from": "live/tools/hashes.mjs",
+   "to": "live/dict.mjs",
+   "src": "git:8487260:live/tools/hashes.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "from": "live/tools/hashes.mjs",
+   "to": "live/kernel.mjs",
+   "src": "git:8487260:live/tools/hashes.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "from": "live/tools/hashes.mjs",
+   "to": "live/vendor/light-codec.mjs",
+   "src": "git:8487260:live/tools/hashes.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "from": "live/tools/sample.mjs",
+   "to": "live/data/sample-process.json",
+   "src": "git:8487260:live/tools/sample.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "from": "live/tools/snapshot.mjs",
+   "to": "live/data/estate.json",
+   "src": "git:8487260:live/tools/snapshot.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "from": "live/tools/snapshot.mjs",
+   "to": "live/vendor/patlib.mjs",
+   "src": "git:8487260:live/tools/snapshot.mjs"
+  },
+  {
+   "k": "receipt",
+   "sha": "8487260",
+   "at": "2026-11-09T03:37:56Z",
+   "path": "live/receipts.json",
+   "src": "git:8487260:live/receipts.json"
+  },
+  {
+   "k": "deploy",
+   "sha": "8487260",
+   "at": "2026-11-09T03:38:34Z",
+   "state": "ok",
+   "workflow": "publish",
+   "src": "gh:run/42557496787"
+  },
+  {
+   "k": "deploy",
+   "sha": "8487260",
+   "at": "2026-11-09T03:38:39Z",
+   "state": "ok",
+   "workflow": "pages build and deployment",
+   "src": "gh:run/42557495788"
+  },
+  {
+   "k": "checks",
+   "sha": "8487260",
+   "at": "2026-11-09T03:38:52Z",
+   "workflow": "proof-of-play",
+   "total": 6,
+   "failedSteps": [],
+   "src": "gh:run/42557496807/job/128966374778"
+  },
+  {
+   "k": "gate",
+   "sha": "8487260",
+   "at": "2026-11-09T03:38:52Z",
+   "file": "garden.mjs",
+   "total": 9,
+   "killed": 9,
+   "survived": 0,
+   "src": "gh:run/42557496807/job/128966374778"
+  },
+  {
+   "k": "gate",
+   "sha": "8487260",
+   "at": "2026-11-09T03:38:52Z",
+   "file": "live/kernel.mjs",
+   "total": 100,
+   "killed": 100,
+   "survived": 0,
+   "src": "gh:run/42557496807/job/128966374778"
+  },
+  {
+   "k": "commit",
+   "sha": "62c124e",
+   "at": "2026-11-09T03:49:39Z",
+   "msg": "FallGarden Live: answer the questions a cold buyer asks, on the page",
+   "files": [
+    {
+     "path": "live/index.html",
+     "s": "M"
+    }
+   ],
+   "src": "git:62c124e"
+  },
+  {
+   "k": "deploy",
+   "sha": "62c124e",
+   "at": "2026-11-09T03:50:07Z",
+   "state": "ok",
+   "workflow": "publish",
+   "src": "gh:run/42558496318"
+  },
+  {
+   "k": "deploy",
+   "sha": "62c124e",
+   "at": "2026-11-09T03:50:09Z",
+   "state": "ok",
+   "workflow": "pages build and deployment",
+   "src": "gh:run/42558496305"
+  },
+  {
+   "k": "checks",
+   "sha": "62c124e",
+   "at": "2026-11-09T03:50:24Z",
+   "workflow": "proof-of-play",
+   "total": 6,
+   "failedSteps": [],
+   "src": "gh:run/42558496328/job/128969468175"
+  },
+  {
+   "k": "gate",
+   "sha": "62c124e",
+   "at": "2026-11-09T03:50:24Z",
+   "file": "garden.mjs",
+   "total": 9,
+   "killed": 9,
+   "survived": 0,
+   "src": "gh:run/42558496328/job/128969468175"
+  },
+  {
+   "k": "gate",
+   "sha": "62c124e",
+   "at": "2026-11-09T03:50:24Z",
+   "file": "live/kernel.mjs",
+   "total": 100,
+   "killed": 100,
+   "survived": 0,
+   "src": "gh:run/42558496328/job/128969468175"
+  },
+  {
+   "k": "commit",
+   "sha": "dc496c5",
+   "at": "2026-11-09T03:52:31Z",
+   "msg": "FallGarden Live: the full brochure on the page: a cost case from sourced figures, and the case for the board",
+   "files": [
+    {
+     "path": "live/app.mjs",
+     "s": "M"
+    },
+    {
+     "path": "live/index.html",
+     "s": "M"
+    },
+    {
+     "path": "live/vendor/SOURCES.json",
+     "s": "M"
+    },
+    {
+     "path": "live/vendor/basis.json",
+     "s": "A"
+    },
+    {
+     "path": "live/vendor/mintcase.mjs",
+     "s": "A"
+    }
+   ],
+   "src": "git:dc496c5"
+  },
+  {
+   "k": "node",
+   "sha": "dc496c5",
+   "at": "2026-11-09T03:52:31Z",
+   "path": "live/vendor/basis.json",
+   "src": "git:dc496c5:live/vendor/basis.json"
+  },
+  {
+   "k": "node",
+   "sha": "dc496c5",
+   "at": "2026-11-09T03:52:31Z",
+   "path": "live/vendor/mintcase.mjs",
+   "src": "git:dc496c5:live/vendor/mintcase.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "dc496c5",
+   "at": "2026-11-09T03:52:31Z",
+   "from": "live/app.mjs",
+   "to": "live/vendor/mintcase.mjs",
+   "src": "git:dc496c5:live/app.mjs"
+  },
+  {
+   "k": "deploy",
+   "sha": "dc496c5",
+   "at": "2026-11-09T03:52:53Z",
+   "state": "ok",
+   "workflow": "publish",
+   "src": "gh:run/42558734904"
+  },
+  {
+   "k": "deploy",
+   "sha": "dc496c5",
+   "at": "2026-11-09T03:53:00Z",
+   "state": "ok",
+   "workflow": "pages build and deployment",
+   "src": "gh:run/42558734221"
+  },
+  {
+   "k": "checks",
+   "sha": "dc496c5",
+   "at": "2026-11-09T03:53:08Z",
+   "workflow": "proof-of-play",
+   "total": 6,
+   "failedSteps": [],
+   "src": "gh:run/42558734907/job/128970206283"
+  },
+  {
+   "k": "gate",
+   "sha": "dc496c5",
+   "at": "2026-11-09T03:53:08Z",
+   "file": "garden.mjs",
+   "total": 9,
+   "killed": 9,
+   "survived": 0,
+   "src": "gh:run/42558734907/job/128970206283"
+  },
+  {
+   "k": "gate",
+   "sha": "dc496c5",
+   "at": "2026-11-09T03:53:08Z",
+   "file": "live/kernel.mjs",
+   "total": 100,
+   "killed": 100,
+   "survived": 0,
+   "src": "gh:run/42558734907/job/128970206283"
+  },
+  {
+   "k": "commit",
+   "sha": "99b3078",
+   "at": "2026-11-09T12:07:06Z",
+   "msg": "The Living Company, by name: its own tab, its own link (?view=company), the spec's caption, and a night counter",
+   "files": [
+    {
+     "path": "live/app.mjs",
+     "s": "M"
+    },
+    {
+     "path": "live/index.html",
+     "s": "M"
+    }
+   ],
+   "src": "git:99b3078"
+  },
+  {
+   "k": "deploy",
+   "sha": "99b3078",
+   "at": "2026-11-09T12:07:31Z",
+   "state": "ok",
+   "workflow": "publish",
+   "src": "gh:run/42614342807"
+  },
+  {
+   "k": "deploy",
+   "sha": "99b3078",
+   "at": "2026-11-09T12:07:36Z",
+   "state": "ok",
+   "workflow": "pages build and deployment",
+   "src": "gh:run/42614340602"
+  },
+  {
+   "k": "checks",
+   "sha": "99b3078",
+   "at": "2026-11-09T12:07:48Z",
+   "workflow": "proof-of-play",
+   "total": 6,
+   "failedSteps": [],
+   "src": "gh:run/42614343156/job/129150367081"
+  },
+  {
+   "k": "gate",
+   "sha": "99b3078",
+   "at": "2026-11-09T12:07:48Z",
+   "file": "garden.mjs",
+   "total": 9,
+   "killed": 9,
+   "survived": 0,
+   "src": "gh:run/42614343156/job/129150367081"
+  },
+  {
+   "k": "gate",
+   "sha": "99b3078",
+   "at": "2026-11-09T12:07:48Z",
+   "file": "live/kernel.mjs",
+   "total": 100,
+   "killed": 100,
+   "survived": 0,
+   "src": "gh:run/42614343156/job/129150367081"
+  },
+  {
+   "k": "commit",
+   "sha": "d9e2e02",
+   "at": "2026-11-09T12:48:06Z",
+   "msg": "FallGarden Live: the hook for the private live view (it shows only on the owner's own machine)",
+   "files": [
+    {
+     "path": "live/app.mjs",
+     "s": "M"
+    },
+    {
+     "path": "live/engine.mjs",
+     "s": "M"
+    },
+    {
+     "path": "live/index.html",
+     "s": "M"
+    },
+    {
+     "path": "live/kernel.mjs",
+     "s": "M"
+    },
+    {
+     "path": "live/kernel.test.mjs",
+     "s": "M"
+    },
+    {
+     "path": "live/receipts.json",
+     "s": "M"
+    },
+    {
+     "path": "live/vendor.test.mjs",
+     "s": "M"
+    }
+   ],
+   "src": "git:d9e2e02"
+  },
+  {
+   "k": "receipt",
+   "sha": "d9e2e02",
+   "at": "2026-11-09T12:48:06Z",
+   "path": "live/receipts.json",
+   "src": "git:d9e2e02:live/receipts.json"
+  },
+  {
+   "k": "deploy",
+   "sha": "d9e2e02",
+   "at": "2026-11-09T12:48:33Z",
+   "state": "ok",
+   "workflow": "publish",
+   "src": "gh:run/42620030616"
+  },
+  {
+   "k": "deploy",
+   "sha": "d9e2e02",
+   "at": "2026-11-09T12:48:34Z",
+   "state": "ok",
+   "workflow": "pages build and deployment",
+   "src": "gh:run/42620029586"
+  },
+  {
+   "k": "checks",
+   "sha": "d9e2e02",
+   "at": "2026-11-09T12:48:45Z",
+   "workflow": "proof-of-play",
+   "total": 6,
+   "failedSteps": [],
+   "src": "gh:run/42620030580/job/129169474039"
+  },
+  {
+   "k": "gate",
+   "sha": "d9e2e02",
+   "at": "2026-11-09T12:48:45Z",
+   "file": "garden.mjs",
+   "total": 9,
+   "killed": 9,
+   "survived": 0,
+   "src": "gh:run/42620030580/job/129169474039"
+  },
+  {
+   "k": "gate",
+   "sha": "d9e2e02",
+   "at": "2026-11-09T12:48:45Z",
+   "file": "live/kernel.mjs",
+   "total": 104,
+   "killed": 104,
+   "survived": 0,
+   "src": "gh:run/42620030580/job/129169474039"
+  },
+  {
+   "k": "commit",
+   "sha": "3b13c9e",
+   "at": "2026-11-09T13:28:14Z",
+   "msg": "FallGarden Live: the private hook removed; the private live view now lives in a private repo of its own",
+   "files": [
+    {
+     "path": "live/app.mjs",
+     "s": "M"
+    },
+    {
+     "path": "live/index.html",
+     "s": "M"
+    },
+    {
+     "path": "live/vendor.test.mjs",
+     "s": "M"
+    }
+   ],
+   "src": "git:3b13c9e"
+  },
+  {
+   "k": "checks",
+   "sha": "3b13c9e",
+   "at": "2026-11-09T13:28:58Z",
+   "workflow": "proof-of-play",
+   "total": 6,
+   "failedSteps": [],
+   "src": "gh:run/42625762771/job/129188998760"
+  },
+  {
+   "k": "gate",
+   "sha": "3b13c9e",
+   "at": "2026-11-09T13:28:58Z",
+   "file": "garden.mjs",
+   "total": 9,
+   "killed": 9,
+   "survived": 0,
+   "src": "gh:run/42625762771/job/129188998760"
+  },
+  {
+   "k": "gate",
+   "sha": "3b13c9e",
+   "at": "2026-11-09T13:28:58Z",
+   "file": "live/kernel.mjs",
+   "total": 104,
+   "killed": 104,
+   "survived": 0,
+   "src": "gh:run/42625762771/job/129188998760"
+  },
+  {
+   "k": "deploy",
+   "sha": "3b13c9e",
+   "at": "2026-11-09T13:29:12Z",
+   "state": "ok",
+   "workflow": "publish",
+   "src": "gh:run/42625762594"
+  },
+  {
+   "k": "deploy",
+   "sha": "3b13c9e",
+   "at": "2026-11-09T13:29:18Z",
+   "state": "ok",
+   "workflow": "pages build and deployment",
+   "src": "gh:run/42625761894"
+  },
+  {
+   "k": "commit",
+   "sha": "083f92b",
+   "at": "2026-11-09T20:47:16Z",
+   "msg": "The Living Visual: claims U1-U5 sealed before any code",
+   "files": [
+    {
+     "path": "live/CLAIMS-living.md",
+     "s": "A"
+    }
+   ],
+   "src": "git:083f92b"
+  },
+  {
+   "k": "node",
+   "sha": "083f92b",
+   "at": "2026-11-09T20:47:16Z",
+   "path": "live/CLAIMS-living.md",
+   "src": "git:083f92b:live/CLAIMS-living.md"
+  },
+  {
+   "k": "seal",
+   "sha": "083f92b",
+   "at": "2026-11-09T20:47:16Z",
+   "path": "live/CLAIMS-living.md",
+   "src": "git:083f92b:live/CLAIMS-living.md"
+  },
+  {
+   "k": "deploy",
+   "sha": "083f92b",
+   "at": "2026-11-09T20:47:55Z",
+   "state": "ok",
+   "workflow": "publish",
+   "src": "gh:run/42696297121"
+  },
+  {
+   "k": "deploy",
+   "sha": "083f92b",
+   "at": "2026-11-09T20:48:02Z",
+   "state": "ok",
+   "workflow": "pages build and deployment",
+   "src": "gh:run/42696297097"
+  },
+  {
+   "k": "checks",
+   "sha": "083f92b",
+   "at": "2026-11-09T20:48:02Z",
+   "workflow": "proof-of-play",
+   "total": 6,
+   "failedSteps": [],
+   "src": "gh:run/42696297242/job/129428923995"
+  },
+  {
+   "k": "gate",
+   "sha": "083f92b",
+   "at": "2026-11-09T20:48:02Z",
+   "file": "garden.mjs",
+   "total": 9,
+   "killed": 9,
+   "survived": 0,
+   "src": "gh:run/42696297242/job/129428923995"
+  },
+  {
+   "k": "gate",
+   "sha": "083f92b",
+   "at": "2026-11-09T20:48:02Z",
+   "file": "live/kernel.mjs",
+   "total": 104,
+   "killed": 104,
+   "survived": 0,
+   "src": "gh:run/42696297242/job/129428923995"
+  },
+  {
+   "k": "commit",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "msg": "The Living Visual: FallGarden Live drawn as an organism, not a diagram (claims U1-U5, sealed 083f92b)",
+   "files": [
+    {
+     "path": "live/RESULTS-living.md",
+     "s": "A"
+    },
+    {
+     "path": "live/app.mjs",
+     "s": "M"
+    },
+    {
+     "path": "live/engine.mjs",
+     "s": "M"
+    },
+    {
+     "path": "live/engine.test.mjs",
+     "s": "A"
+    },
+    {
+     "path": "live/index.html",
+     "s": "M"
+    },
+    {
+     "path": "live/living.mjs",
+     "s": "A"
+    },
+    {
+     "path": "live/living.test.mjs",
+     "s": "A"
+    },
+    {
+     "path": "live/organism.mjs",
+     "s": "A"
+    },
+    {
+     "path": "live/physics.mjs",
+     "s": "A"
+    },
+    {
+     "path": "live/physics.test.mjs",
+     "s": "A"
+    },
+    {
+     "path": "live/receipts.json",
+     "s": "M"
+    },
+    {
+     "path": "live/tools/hashes.mjs",
+     "s": "M"
+    }
+   ],
+   "src": "git:ae8f520"
+  },
+  {
+   "k": "node",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "path": "live/RESULTS-living.md",
+   "src": "git:ae8f520:live/RESULTS-living.md"
+  },
+  {
+   "k": "node",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "path": "live/engine.test.mjs",
+   "src": "git:ae8f520:live/engine.test.mjs"
+  },
+  {
+   "k": "node",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "path": "live/living.mjs",
+   "src": "git:ae8f520:live/living.mjs"
+  },
+  {
+   "k": "node",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "path": "live/living.test.mjs",
+   "src": "git:ae8f520:live/living.test.mjs"
+  },
+  {
+   "k": "node",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "path": "live/organism.mjs",
+   "src": "git:ae8f520:live/organism.mjs"
+  },
+  {
+   "k": "node",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "path": "live/physics.mjs",
+   "src": "git:ae8f520:live/physics.mjs"
+  },
+  {
+   "k": "node",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "path": "live/physics.test.mjs",
+   "src": "git:ae8f520:live/physics.test.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "from": "live/engine.mjs",
+   "to": "live/living.mjs",
+   "src": "git:ae8f520:live/engine.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "from": "live/engine.mjs",
+   "to": "live/organism.mjs",
+   "src": "git:ae8f520:live/engine.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "from": "live/engine.mjs",
+   "to": "live/physics.mjs",
+   "src": "git:ae8f520:live/engine.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "from": "live/engine.test.mjs",
+   "to": "live/app.mjs",
+   "src": "git:ae8f520:live/engine.test.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "from": "live/engine.test.mjs",
+   "to": "live/engine.mjs",
+   "src": "git:ae8f520:live/engine.test.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "from": "live/engine.test.mjs",
+   "to": "live/index.html",
+   "src": "git:ae8f520:live/engine.test.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "from": "live/living.test.mjs",
+   "to": "live/living.mjs",
+   "src": "git:ae8f520:live/living.test.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "from": "live/organism.mjs",
+   "to": "live/living.mjs",
+   "src": "git:ae8f520:live/organism.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "from": "live/organism.mjs",
+   "to": "live/physics.mjs",
+   "src": "git:ae8f520:live/organism.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "from": "live/physics.mjs",
+   "to": "live/living.mjs",
+   "src": "git:ae8f520:live/physics.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "from": "live/physics.test.mjs",
+   "to": "live/kernel.mjs",
+   "src": "git:ae8f520:live/physics.test.mjs"
+  },
+  {
+   "k": "wire",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "from": "live/physics.test.mjs",
+   "to": "live/physics.mjs",
+   "src": "git:ae8f520:live/physics.test.mjs"
+  },
+  {
+   "k": "claim",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "path": "live/RESULTS-living.md",
+   "id": "U1",
+   "verdict": "part",
+   "text": "FAILED in part (c); (a) and (d) held; (b) not measured",
+   "src": "git:ae8f520:live/RESULTS-living.md"
+  },
+  {
+   "k": "claim",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "path": "live/RESULTS-living.md",
+   "id": "U2",
+   "verdict": "held",
+   "text": "HELD",
+   "src": "git:ae8f520:live/RESULTS-living.md"
+  },
+  {
+   "k": "claim",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "path": "live/RESULTS-living.md",
+   "id": "U3",
+   "verdict": "held",
+   "text": "HELD",
+   "src": "git:ae8f520:live/RESULTS-living.md"
+  },
+  {
+   "k": "claim",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "path": "live/RESULTS-living.md",
+   "id": "U4",
+   "verdict": "held",
+   "text": "HELD",
+   "src": "git:ae8f520:live/RESULTS-living.md"
+  },
+  {
+   "k": "claim",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "path": "live/RESULTS-living.md",
+   "id": "U5",
+   "verdict": "held",
+   "text": "HELD",
+   "src": "git:ae8f520:live/RESULTS-living.md"
+  },
+  {
+   "k": "receipt",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:18Z",
+   "path": "live/receipts.json",
+   "src": "git:ae8f520:live/receipts.json"
+  },
+  {
+   "k": "deploy",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:45Z",
+   "state": "ok",
+   "workflow": "publish",
+   "src": "gh:run/42705489736"
+  },
+  {
+   "k": "deploy",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:45:47Z",
+   "state": "ok",
+   "workflow": "pages build and deployment",
+   "src": "gh:run/42705488749"
+  },
+  {
+   "k": "checks",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:46:07Z",
+   "workflow": "proof-of-play",
+   "total": 8,
+   "failedSteps": [],
+   "src": "gh:run/42705489618/job/129461053662"
+  },
+  {
+   "k": "gate",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:46:07Z",
+   "file": "garden.mjs",
+   "total": 9,
+   "killed": 9,
+   "survived": 0,
+   "src": "gh:run/42705489618/job/129461053662"
+  },
+  {
+   "k": "gate",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:46:07Z",
+   "file": "live/kernel.mjs",
+   "total": 104,
+   "killed": 104,
+   "survived": 0,
+   "src": "gh:run/42705489618/job/129461053662"
+  },
+  {
+   "k": "gate",
+   "sha": "ae8f520",
+   "at": "2026-11-09T21:46:07Z",
+   "file": "live/living.mjs",
+   "total": 144,
+   "killed": 144,
+   "survived": 0,
+   "src": "gh:run/42705489618/job/129461053662"
+  },
+  {
+   "k": "commit",
+   "sha": "5de92da",
+   "at": "2026-11-09T21:53:42Z",
+   "msg": "The Living Visual: the page answers a cold buyer's read",
+   "files": [
+    {
+     "path": "live/RESULTS-living.md",
+     "s": "M"
+    },
+    {
+     "path": "live/index.html",
+     "s": "M"
+    }
+   ],
+   "src": "git:5de92da"
+  },
+  {
+   "k": "deploy",
+   "sha": "5de92da",
+   "at": "2026-11-09T21:54:09Z",
+   "state": "ok",
+   "workflow": "publish",
+   "src": "gh:run/42706800841"
+  },
+  {
+   "k": "deploy",
+   "sha": "5de92da",
+   "at": "2026-11-09T21:54:15Z",
+   "state": "ok",
+   "workflow": "pages build and deployment",
+   "src": "gh:run/42706800926"
+  },
+  {
+   "k": "checks",
+   "sha": "5de92da",
+   "at": "2026-11-09T21:54:35Z",
+   "workflow": "proof-of-play",
+   "total": 8,
+   "failedSteps": [],
+   "src": "gh:run/42706801202/job/129465621245"
+  },
+  {
+   "k": "gate",
+   "sha": "5de92da",
+   "at": "2026-11-09T21:54:35Z",
+   "file": "garden.mjs",
+   "total": 9,
+   "killed": 9,
+   "survived": 0,
+   "src": "gh:run/42706801202/job/129465621245"
+  },
+  {
+   "k": "gate",
+   "sha": "5de92da",
+   "at": "2026-11-09T21:54:35Z",
+   "file": "live/kernel.mjs",
+   "total": 104,
+   "killed": 104,
+   "survived": 0,
+   "src": "gh:run/42706801202/job/129465621245"
+  },
+  {
+   "k": "gate",
+   "sha": "5de92da",
+   "at": "2026-11-09T21:54:35Z",
+   "file": "live/living.mjs",
+   "total": 144,
+   "killed": 144,
+   "survived": 0,
+   "src": "gh:run/42706801202/job/129465621245"
+  }
+ ]
+}
