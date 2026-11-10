@@ -23,6 +23,24 @@ Episodes, from real build logs:
 | B4 | **FAILED in part** | The script reproduces: GitHub's runner recomputes both scripts' fingerprints and they match the receipts (1b14867c494e68c8 and a3eef97cfb32199b). The page computes the same fingerprint in a real browser. The caption track reproduces: two recordings of Short 1 (1,149 frames, 38.3 s) gave byte-identical captions. **The frames do not reproduce exactly.** Of 1,149 frames, 29 differ, by at most 1/255 in one colour channel on at most 70 pixels. The cause is the GPU itself: with identical inputs, redrawing the very same frame gives a slightly different image on this laptop's GPU (an Intel Gen12). Reading one drawn frame twice gives the same pixels, so the copy-back is not at fault. The video files' bytes differ too, as a result. The label holds: RECORDED for every replay, LIVE only for the local tap, and a test shows no other mode can show LIVE. |
 | B5 | **HELD** | The tap redacts before it writes and refuses to write anything secret-shaped or private. It was checked against the estate's list of 50 private repos, and these public logs needed 0 redactions. GitHub's runner scans every committed log and caption track for tokens, keys, private keys and email addresses, and finds none. The server never serves `live/` or `.git`. |
 
+## The recorded episode, and live
+
+**The episode file.** Episode 1 was recorded from its log on the fixed clock:
+- `recordings/fallgarden-live-episode.webm`, 186.6 MB, kept on this machine and not in git
+- 14,832 frames at 30 a second, 1280×720 VP8, 494.4 s
+- 248 clusters, each opening on a key frame
+- the script it plays is 1b14867c494e68c8, the receipt's
+- its caption track is `.vtt`, 65 cues
+
+A browser plays it: it reads 494.4 s at 1280×720, and seeking to 200 s shows the picture.
+
+**Short 1** (38.3 s from 1:06) was recorded twice for the B4 check above, at 14.6 MB each.
+
+**Live.** The local tap watched this repo while it was built. The build commit 5047263 was pushed at 23:07:48, and the
+LIVE episode narrated it about 8 seconds after its poll began: "Kar adds 30 new parts…", "23 links join the parts up…",
+"A receipt is saved…". It carried the label "LIVE · sjgant80-hub/build-broadcast · each event as it happens". The page
+in RECORDED mode never shows that label (a test).
+
 ## Found by building it, and fixed
 
 1. **The picture drew nothing at first.** The script stamped each event's time into `t`, the field the kernel uses for the
