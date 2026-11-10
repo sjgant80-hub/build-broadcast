@@ -125,8 +125,8 @@ export function narrate(b) {
   }
   if (k === 'gate') {
     const total = int(b.total), got = int(b.survived);
-    if (got > 0) return 'The gate broke ' + say(b.name) + ' on purpose, ' + n0(total) + ' ways. ' + n0(got) + ' got past the checks. That is a gap, so we fix the checks.';
-    return 'Now the gate tests the tests. It broke ' + say(b.name) + ' on purpose, ' + n0(total) + ' ways, and the checks caught every one.';
+    if (got > 0) return 'The gate broke ' + say(b.name) + ' on purpose, in ' + n0(total) + ' different ways, to see if the checks notice. ' + n0(got) + ' got past them. That is a gap, so we fix the checks.';
+    return 'Now the gate tests the tests. It breaks ' + say(b.name) + ' on purpose, in ' + n0(total) + ' different ways, to see if the checks notice. They caught every one.';
   }
   if (k === 'claim') {
     const id = str(b.id);

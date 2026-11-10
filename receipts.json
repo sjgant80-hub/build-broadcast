@@ -7,14 +7,14 @@
    "to": "5de92da",
    "events": 130,
    "beats": 65,
-   "seconds": 490.8,
+   "seconds": 494.4,
    "kernel": 196,
    "ignored": 0,
    "failures": 1,
    "plain": true,
    "maxGrade": 4.3,
-   "vtt": 7910,
-   "hash": "fa1f72807d02ee03"
+   "vtt": 8603,
+   "hash": "1b14867c494e68c8"
   },
   "fallaccount-trades": {
    "repo": "sjgant80-hub/fallaccount-trades",
