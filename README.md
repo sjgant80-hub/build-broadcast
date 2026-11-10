@@ -12,8 +12,13 @@ Watch the estate build something real, explained so a 12-year-old can follow. Th
 
 **Real build events only.** The tap (`tools/tap.mjs`) reads a build's git history and GitHub's own record of its checks
 (read only). It redacts anything secret or private, and writes a build log in which every event names its source.
-`tools/tap.mjs --audit` re-derives every event on GitHub's runner and compares them. A replay is always labelled
+`tools/tap.mjs --audit` re-derives every event and compares them. On GitHub's runner it re-checks every event except the
+gate results, whose run logs that runner may not read, and it says how many it skipped. A replay is always labelled
 RECORDED; LIVE appears only for the local tap watching a build right now.
+
+**For a buyer**, the page carries the brochure: what it gives each role, a cost case worked out by the law from your own
+numbers and the sourced UK median wage, security and data protection, the risks answered straight, support (AI Native
+Solutions, terms agreed per deployment) and the roll-out.
 
 - **Episodes:** FallGarden Live and the Living Visual (`fallgarden` `live/`), and FallAccount Trades, an accounts app for
   builders and plumbers. Both are public builds with their real failures.

@@ -313,6 +313,27 @@ export function labelFor(mode, log) {
   return 'RECORDED · a replay of ' + (str(L.repo) || 'a build') + range + ', from its build log';
 }
 
+// ── for a buyer: the time a broadcast gives back (sourced: vendor/basis.json, FallGarden Live's basis, byte for byte) ──
+/** reviewCase(basis, { people, hours, reportHours, share, months }) → what checking a build's progress costs today, and what
+ *  watching it instead gives back. Today: each of `people` spends `hours` a month in status meetings, demos and reading
+ *  updates, and the builder spends `reportHours` a month writing them, for `months`; valued at the UK median hourly wage, a
+ *  floor (employer on-costs left out). `share` is the part of that an episode replaces, the reader's own estimate. Beside
+ *  it, what an AI assistant seat (the sourced Microsoft 365 Copilot price) costs the same people over the same months. */
+export function reviewCase(basis, inputs) {
+  const w = isObj(basis) && isObj(basis.wageMedianHourly) ? basis.wageMedianHourly.value : NaN;
+  if (!Number.isFinite(w) || w <= 0) return { ok: false, why: 'the sourced wage is missing' };
+  const I = isObj(inputs) ? inputs : {};
+  const n = (k, lo, hi) => (Number.isFinite(I[k]) && I[k] >= lo && I[k] <= hi ? I[k] : NaN);
+  const people = n('people', 1, 500), hours = n('hours', 0, 160), report = n('reportHours', 0, 160), share = n('share', 0, 1), months = n('months', 1, 60);
+  if ([people, hours, report, share, months].some(Number.isNaN)) return { ok: false, why: 'people 1-500, hours 0-160 a month each, report hours 0-160 a month, share 0-100%, months 1-60' };
+  const seat = isObj(basis['seat.copilot']) ? basis['seat.copilot'] : {};
+  const per = Number.isFinite(seat.value) && seat.value > 0 ? seat.value : NaN;
+  const hoursToday = (people * hours + report) * months, hoursBack = hoursToday * share;
+  const r = (x) => Math.round(x * 100) / 100;
+  return { ok: true, wage: w, source: str(basis.wageMedianHourly.source), hoursToday: r(hoursToday), costToday: r(hoursToday * w), hoursBack: r(hoursBack), moneyBack: r(hoursBack * w),
+    seat: Number.isNaN(per) ? null : { product: str(seat.product), perMonth: per, source: str(seat.source), cost: r(people * months * per) } };
+}
+
 // ── the audit's comparison (B1) ─────────────────────────────────────────────────────────────────────────────────
 /** sameEvent(logged, derived) → does a logged event match one derived again from git and GitHub? A redaction mark in the
  *  log stands for whatever the raw text held there (the runner cannot know the private names). */
@@ -339,4 +360,4 @@ export function auditLog(logged, derived) {
 }
 
 export default { SECRETS, REDACTED, PRIVATE, secretsIn, redact, ROLES, roleOf, nameOf, syllables, grade, MAX_GRADE, JARGON, jargonIn, plain,
-  GLOSS, say, narrate, failed, beatsOf, kernelOf, PACE, durationOf, scriptOf, vttOf, shortsOf, labelFor, sameEvent, auditLog };
+  GLOSS, say, narrate, failed, beatsOf, kernelOf, PACE, durationOf, scriptOf, vttOf, shortsOf, labelFor, reviewCase, sameEvent, auditLog };

@@ -36,7 +36,9 @@ main section{max-width:880px;margin:30px auto;padding:0 16px}h2{font-size:20px;m
 .card h3{margin:0 0 4px;font-size:15px}.card p{margin:0;color:var(--muted);font-size:13.5px}
 .muted{color:var(--muted)}code{font-family:var(--mono);font-size:.92em}
 .svgwrap{overflow-x:auto}svg text{fill:var(--text)}
-table{border-collapse:collapse;width:100%;font-size:13.5px}td,th{border-top:1px solid var(--line);padding:6px;text-align:left;vertical-align:top}
+table{border-collapse:collapse;width:100%;font-size:13.5px}h3{font-size:16px;margin:18px 0 6px}
+.costin label{display:flex;flex-direction:column;gap:3px;font-size:13px;color:var(--muted);max-width:200px}.costin input{font:inherit;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:5px 7px;width:100%}
+#c-rows td:last-child{white-space:nowrap;font-family:var(--mono)}#c-src a{overflow-wrap:anywhere;word-break:break-all}td,th{border-top:1px solid var(--line);padding:6px;text-align:left;vertical-align:top}
 @media (max-width:700px){.stage{aspect-ratio:4/3}header{gap:6px}}
 </style>
 </head>
@@ -103,7 +105,7 @@ table{border-collapse:collapse;width:100%;font-size:13.5px}td,th{border-top:1px 
     <li><b>The tap</b> (<code>tools/tap.mjs</code>) reads a build's saved history and GitHub's own record of its checks. Each saved step, each new file, each new link between files, each promise and each check becomes an event, and each event names where it came from. Before anything is written, it hides anything secret and any private name.</li>
     <li><b>The law</b> (<code>broadcast.mjs</code>) turns the log into the picture's events and the narrator's lines, and times them into a script. The same log always gives the same script, and the page shows the script's fingerprint.</li>
     <li><b>The picture</b> is FallGarden Live's Living Visual, copied byte for byte. It draws only what the script says happened.</li>
-    <li><b>The recorder</b> draws the script into a video, frame by frame, on a fixed clock of 30 frames a second. The same log gives the same frames, which is checked frame by frame.</li>
+    <li><b>The recorder</b> draws the script into a video, frame by frame, on a fixed clock of 30 frames a second. The same log gives the same script and the same captions, byte for byte. The frames were checked frame by frame: they match to within one shade on a few pixels, which is this laptop's graphics chip, not the script.</li>
   </ol>
 </section>
 <section id="narrator">
@@ -125,15 +127,84 @@ table{border-collapse:collapse;width:100%;font-size:13.5px}td,th{border-top:1px 
     <div class="card"><h3>server.mjs (on your machine only)</h3><p>Plays a build LIVE from the tap as it happens, and saves recordings to your disk. It answers only your own machine.</p></div>
   </div>
 </section>
-<section id="adoption">
+<section id="business">
   <h2>For your business</h2>
-  <p>When we build a tool for you, you can watch it being built and proven, in plain words, before you rely on it. Each check it passed, each thing that broke and was fixed, and each promise kept or failed is shown and said. A private cut of your own build is made only with your consent, stays on your machine, and is never published. Your records never leave it: the tap reads them locally, and the page talks to nothing else.</p>
+  <p><b>What it does.</b> Build Broadcast turns a software build's own records, its git history and its GitHub run records, into an episode anyone can watch. The build grows on screen as a living picture, and a narrator says what happened in plain words that a 12-year-old can follow. Every part, link, light and line comes from a real record, and its source is shown. Failures are said, and drawn in red. You see how the build really went without a status meeting, and you can check every line.</p>
+  <h3>What it gives each role</h3>
+  <table>
+    <tr><th>Who</th><th>What this gives them</th></tr>
+    <tr><td>CEO / managing director</td><td>What a supplier or your own team really built, and what broke and was fixed, in minutes and without reading code. You decide on evidence: each line names the record it came from.</td></tr>
+    <tr><td>CFO / finance</td><td>Status meetings and written updates are staff time you pay for. The cost case below works that time out at the UK median wage, from your own numbers. The tool has no licence fee: it is MIT.</td></tr>
+    <tr><td>COO / operations</td><td>One view of progress for every build, the same for every team. Checks, failures and fixes appear in the order they happened, and any step can be replayed.</td></tr>
+    <tr><td>CTO / CISO</td><td>Read only: the tap reads git and GitHub's run records and writes to neither. It removes anything shaped like a secret before it writes a log, and refuses to write if any survives. The page contacts only its own files, and the live server answers only the machine it runs on.</td></tr>
+    <tr><td>Delivery teams</td><td>No weekly update written by hand: the record is the update. Each check, each fix and each promise is shown as it happened.</td></tr>
+    <tr><td>Clients and stakeholders</td><td>Watch the build you are paying for, explained plainly. A private cut of your own build stays on your machine.</td></tr>
+    <tr><td>Compliance and audit</td><td>Each event names its source, a commit or a GitHub run, and one command derives every event again from git and GitHub and compares. No line is typed by hand.</td></tr>
+  </table>
+  <h3>The cost case: the time that checking progress takes</h3>
+  <p class="muted">Your own numbers in. The wage is sourced, and so is the assistant seat it is compared with, both read from the same basis file FallGarden Live uses (sources listed below). No price of ours appears here.</p>
+  <div class="controls costin">
+    <label>people who check progress <input id="c-people" type="number" min="1" max="500" value="4"></label>
+    <label>hours a month each, in status meetings, demos and updates <input id="c-hours" type="number" min="0" max="160" step="0.5" value="6"></label>
+    <label>hours a month the builder spends writing updates <input id="c-report" type="number" min="0" max="160" step="0.5" value="8"></label>
+    <label>share an episode replaces, % <input id="c-share" type="number" min="0" max="100" value="50"></label>
+    <label>months <input id="c-months" type="number" min="1" max="60" value="6"></label>
+  </div>
+  <p id="c-head" style="font-size:16px" role="status">…</p>
+  <table id="c-table"><thead><tr><th>Route</th><th>What it means</th><th>Over those months</th></tr></thead><tbody id="c-rows"></tbody></table>
+  <p id="c-note" class="muted"></p>
+  <h3>The case for the board</h3>
+  <p id="c-board">…</p>
+  <p class="muted">Sources, as read into the basis:</p>
+  <ul id="c-src" class="muted" style="font-size:13px"></ul>
+  <h3>Security, compliance and data protection</h3>
+  <ul>
+    <li><b>Read only.</b> The tap reads git history from a folder on your machine, and GitHub's run records through your own GitHub command line (<code>gh api</code>, read requests only), so a read-only token is enough. It changes nothing in your repository or your CI.</li>
+    <li><b>Secrets never reach a log.</b> The tap removes anything shaped like a secret before it writes, and refuses to write if any survives: GitHub tokens (<code>ghp_</code>, <code>gho_</code>, <code>ghu_</code>, <code>ghs_</code>, <code>ghr_</code>, <code>github_pat_</code>), AWS access keys (<code>AKIA…</code>), private key blocks, <code>sk-</code> API keys, Slack tokens (<code>xox…</code>), signed web tokens (JWTs) and email addresses. The patterns are the list <code>SECRETS</code> in <code>broadcast.mjs</code>, open to read and mutation-tested. On every change, GitHub's runner scans every committed log and caption track for the same shapes.</li>
+    <li><b>Private names stay private.</b> Give the tap your list of private names, and it refuses to write a log that still holds one.</li>
+    <li><b>No personal data.</b> A log holds commit messages, file paths, run results and their sources. It holds no author names and no email addresses, and the page collects nothing about whoever watches.</li>
+    <li><b>Nothing leaves the page.</b> Its security policy lets it load and contact only its own files: no analytics, no cookies, no outside scripts. The voice is your browser's own voice, on your device.</li>
+    <li><b>Your machine only.</b> The live server listens on 127.0.0.1 alone, so no other machine can reach it. It also refuses any request whose Host is not this machine or that comes from another site, and it accepts only reads, plus saving a recording under a plain file name into its own <code>recordings/</code> folder.</li>
+    <li><b>Retention is yours.</b> Logs, recordings and caption files are ordinary files in folders you choose. They last until you delete them, and no copy is kept anywhere else.</li>
+  </ul>
+  <h3>Risks and questions, answered straight</h3>
+  <table>
+    <tr><td><b>Is every line true?</b></td><td>Each line is made by a fixed template from one real event's own fields, and the event's source is shown under it. The audit derives every event again from git and GitHub and compares them, then prints how many events it checked and lists any that are missing, extra or different. Anyone can run it, and GitHub's runner runs it on every change. On both public episodes, run with access to every run log, none is missing and none is extra.</td></tr>
+    <tr><td><b>Can it hide a failure?</b></td><td>No. Each kind of failure has its own line and is drawn red: a check that broke, a test gap the gate found, a promise that failed or only partly held, a deploy that failed or was stopped. A test proves each one.</td></tr>
+    <tr><td><b>Could a secret end up in a video?</b></td><td>The log is redacted before it is written, the tap refuses to write if anything secret-shaped survives, and the video is drawn only from that log.</td></tr>
+    <tr><td><b>Is the video the same every time?</b></td><td>The words are: the script and the captions come out byte for byte the same from the same log, and the fingerprint proves it. On some graphics chips, the picture can differ by one shade on a few pixels between recordings.</td></tr>
+    <tr><td><b>Which builds can it show?</b></td><td>Any build with a git history: every commit, file and link comes from git. Checks, mutation-gate results and deploys come from GitHub Actions; runs on other CI systems are not read, so a build there shows its git story without its checks.</td></tr>
+    <tr><td><b>How big a build can it show?</b></td><td>The episodes here run for about 3 minutes and about 8 minutes. A longer history gives a longer episode: <code>--path</code> narrows the tap to one folder, <code>--to</code> ends it at one commit, and the Shorts pick the busiest 20 to 40 seconds.</td></tr>
+    <tr><td><b>What does it cost to run?</b></td><td>There is no licence fee, no seat fee and no service to pay for. It runs on a laptop or desktop you already have. The one cost is staff time: one command to tap a build, and the time to watch it. Support, if you want it, is agreed per deployment.</td></tr>
+    <tr><td><b>What does it need?</b></td><td>To watch: a modern browser. To make an episode: Node.js 20 or later, git, and the GitHub command line (<code>gh</code>) signed in with read access, for the run records. It is proven on Node.js 20 on GitHub's Linux runner and on Node.js 25 on Windows. There is nothing to install from a package registry: it has no dependencies.</td></tr>
+    <tr><td><b>Who needs training?</b></td><td>Nobody who watches: press ▶ Play. Whoever runs your builds makes an episode with one command, and the <a href="#adoption">roll-out steps</a> below are the whole of it.</td></tr>
+    <tr><td><b>How do teams see it?</b></td><td>A recording is an ordinary WebM video with a WebVTT caption file, which carries every line of the narration: share it as you share any video inside your company. Or put the page and its episode logs on any internal web server: they are plain files, which is how this page is served.</td></tr>
+    <tr><td><b>Which browsers?</b></td><td>Any modern browser plays an episode. The living picture needs WebGPU; a browser without it draws the same build on a plainer 2D canvas and says so. Recording needs the browser's own video encoder (WebCodecs); a browser without it says so, and still plays.</td></tr>
+    <tr><td><b>Does our code have to leave our building?</b></td><td>No. Run the tap on your own machine. The episode plays from a file on that machine.</td></tr>
+    <tr><td><b>Is it certified?</b></td><td>No certification is claimed. What you can check is that the code is open, and is mutation-tested on GitHub's runner on every change: the gate (witness) makes broken copies of the law and the recorder on purpose, and the tests must catch every one. The counts are at the foot of this page.</td></tr>
+    <tr><td><b>Who has used it?</b></td><td>No client case study is published yet. The episodes here are the estate's own public builds.</td></tr>
+    <tr><td><b>What if we stop working with you?</b></td><td>The code is MIT. It keeps running without us, your logs and recordings are your own files, and your team can change and maintain the code: every part is open, with its tests.</td></tr>
+  </table>
+  <h3>Support and ownership</h3>
+  <p>Supplied by <a href="https://www.ai-nativesolutions.com" rel="noopener">AI Native Solutions</a>; contact us through that site. Support, SLA, warranty and liability are agreed per deployment, in each deployment's agreement. The code is MIT: there is no licence fee, and it keeps running without us. You own your episodes, logs and recordings: they are files on your machine.</p>
+</section>
+<section id="adoption">
+  <h2>Rolling it out</h2>
+  <ol>
+    <li><b>Pick one build</b> with a git history. If it runs on GitHub Actions, its checks, gates and deploys come too.</li>
+    <li><b>Make its log</b>, with one command on your own machine: <code>node tools/tap.mjs --repo &lt;folder&gt; --gh &lt;owner/name&gt; --id my-build --title "My build"</code>. It writes <code>episodes/my-build.log.json</code>; add one line for it to <code>episodes/index.json</code> and it appears at the top of the page.</li>
+    <li><b>Check it:</b> add <code>--audit</code> and the tap derives every event again and compares.</li>
+    <li><b>Watch it:</b> <code>node server.mjs --port 8827</code>, then open it on that machine. Add <code>--live-repo &lt;folder&gt;</code> to have a build narrated live as it happens.</li>
+    <li><b>Record it</b> with ● Record the episode: a video file and a caption file, saved to your disk.</li>
+    <li><b>Decide what is shared.</b> The tool streams and posts nothing. Every share is your decision.</li>
+  </ol>
+  <p>When we build a tool for you, you can watch it being built and proven, in plain words, before you rely on it. A private cut of your own build is made only with your consent, stays on your machine, and is never published. Your records never leave it: the tap reads them locally, and the page talks to nothing else.</p>
   <p class="muted">Public episodes here show public builds only. Streaming a build live, posting Shorts, and any client cut are decided by Simon, case by case.</p>
 </section>
 <section id="limits">
   <h2>Honest rules, and the limits plainly</h2>
   <ul>
-    <li><b>Real events only.</b> Each line and each light comes from the build's own records, with its source shown. <code>tools/tap.mjs --audit</code> re-derives every event on GitHub's own computer and checks it.</li>
+    <li><b>Real events only.</b> Each line and each light comes from the build's own records, with its source shown. <code>tools/tap.mjs --audit</code> derives every event again from git and GitHub and checks it. On GitHub's own computer it checks every event except the gate results, because that computer is not allowed to read another project's run logs, and it says how many it skipped.</li>
     <li><b>Live is labelled live.</b> A replay always says RECORDED with the steps it covers. LIVE appears only for the local tap watching a build right now.</li>
     <li><b>The voice is not in the video file.</b> A browser cannot record its own speech. The video carries the narration as words on the picture and as a caption file. Add a voice yourself, or turn on Voice while watching.</li>
     <li><b>Without WebGPU</b> the same build is drawn on a plainer 2D canvas, and the note on the picture says so. There is no video stand-in.</li>
@@ -141,7 +212,7 @@ table{border-collapse:collapse;width:100%;font-size:13.5px}td,th{border-top:1px 
   <p class="muted" id="receipts">…</p>
 </section>
 <section id="credits">
-  <p class="muted">Build Broadcast · MIT · <a href="https://github.com/sjgant80-hub/build-broadcast">source</a> · claims sealed before code in <code>CLAIMS.md</code>; results in <code>RESULTS.md</code>. Built on FallGarden Live. LIGHT is Thomas Frumkin's; this codec comes from konomi-tongue, used with permission.</p>
+  <p class="muted">Build Broadcast · MIT · <a href="https://github.com/sjgant80-hub/build-broadcast">source</a> · claims sealed before code in <code>CLAIMS.md</code>; results in <code>RESULTS.md</code>. Built on FallGarden Live. Powered by the Konomi architecture, created by Thomas Frumkin. LIGHT is Thomas Frumkin's; this codec comes from konomi-tongue, used with permission.</p>
 </section>
 </main>
 <script type="module" src="./app.mjs"></script>

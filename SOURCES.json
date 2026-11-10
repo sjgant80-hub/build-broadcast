@@ -49,6 +49,12 @@
    "from": "fallgarden live/vendor/light-codec.mjs @775c3fa",
    "sha256": "4f018272a05989fe8fbd0f675e0460b35365710a174a88dbf628165ef21f431d",
    "what": "LIGHT, Thomas Frumkin's codec (from konomi-tongue, used with permission)"
+  },
+  {
+   "path": "vendor/basis.json",
+   "from": "fallgarden live/vendor/basis.json @775c3fa",
+   "sha256": "83e9c2effa2f81596dcfa7110f030940032c1910cdf928d27d628ae59d73bb42",
+   "what": "every external figure the cost case uses, with its source (the UK median wage, the assistant seat price)"
   }
  ]
 }

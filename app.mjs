@@ -239,6 +239,45 @@ function wire() {
   stage.addEventListener('wheel', (e) => { e.preventDefault(); S.engine.cam.manual = true; S.engine.cam.zoom = Math.max(0.05, Math.min(8, S.engine.cam.zoom * (e.deltaY > 0 ? 0.9 : 1.1))); }, { passive: false });
   if (typeof speechSynthesis !== 'undefined') { voices(); speechSynthesis.onvoiceschanged = voices; } else $('voice').disabled = true;
 }
+// ── the brochure's cost case: the reader's own numbers in; the law (B.reviewCase) and the sourced basis do the sums ──
+let BASIS = null;
+const gbp = (x) => '£' + x.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const hrs = (x) => x.toLocaleString('en-GB', { maximumFractionDigits: 1 }) + ' hours';
+const CASE_IN = ['c-people', 'c-hours', 'c-report', 'c-share', 'c-months'];
+function renderCase() {
+  const num = (id) => { const v = $(id).value.trim(); return v === '' ? NaN : Number(v); };
+  const r = B.reviewCase(BASIS, { people: num('c-people'), hours: num('c-hours'), reportHours: num('c-report'), share: num('c-share') / 100, months: num('c-months') });
+  if (!r.ok) {
+    $('c-head').textContent = BASIS ? 'Enter ' + r.why + '.' : 'The sourced figures did not load, so no cost is shown.';
+    for (const id of ['c-rows', 'c-board', 'c-note']) $(id).replaceChildren();
+    return;
+  }
+  const p = num('c-people'), m = num('c-months'), share = num('c-share');
+  const months = m + ' month' + (m === 1 ? '' : 's'), people = p + (p === 1 ? ' person' : ' people');
+  $('c-head').textContent = 'Checking progress today: ' + hrs(r.hoursToday) + ' of staff time over ' + months + ', ' + gbp(r.costToday) + ' at the UK median wage. An episode gives back ' + hrs(r.hoursBack) + ', worth ' + gbp(r.moneyBack) + '.';
+  const row = (a, b, c) => { const tr = el('tr'); tr.append(el('td', '', a), el('td', '', b), el('td', '', c)); return tr; };
+  const rows = [
+    row('Status meetings and written updates, today', people + ' checking progress, and the builder writing the updates, at ' + gbp(r.wage) + ' an hour (the UK median).', gbp(r.costToday)),
+    row('The time an episode gives back', share + '% of that checking, replaced by watching the build itself.', gbp(r.moneyBack)),
+  ];
+  if (r.seat) rows.push(row('An AI assistant seat for the same ' + (p === 1 ? 'person' : 'people'), r.seat.product + ' at ' + gbp(r.seat.perMonth) + ' a person a month. It summarises what people wrote about the build; it does not show the build\'s own records.', gbp(r.seat.cost)));
+  rows.push(row('Build Broadcast', 'MIT: no licence fee and no seat fee. It runs on a machine you already have: a browser to watch; Node.js, git and the GitHub command line to make an episode.', 'no licence fee'));
+  $('c-rows').replaceChildren(...rows);
+  $('c-note').textContent = 'These are your own costs, from your own numbers. The wage is a floor: employer National Insurance and pension are left out, so the real cost of each hour is higher.';
+  $('c-board').textContent = 'For ' + people + ' over ' + months + ', checking how a build is going costs about ' + gbp(r.costToday) + ' of staff time, at the UK median wage. If an episode replaces ' + share + '% of that, ' + gbp(r.moneyBack)
+    + ' of it goes back to real work. The tool has no licence fee and needs no new service. It only reads the build\'s records, so it cannot change the build, and every line it says can be checked against its source. Trying it costs the time to tap one build; what it gives is a progress report nobody has to write, with every failure shown.';
+  const src = $('c-src'), li = (label, u) => { const x = el('li', '', label + ' '); if (/^https:\/\//.test(u)) { const a = el('a', '', u); a.href = u; a.rel = 'noopener'; x.append(a); } return x; };
+  const list = [li('UK median hourly wage, ' + gbp(r.wage) + ': ' + str(BASIS.wageMedianHourly.what) + '.', r.source)];
+  if (r.seat) list.push(li(r.seat.product + ', ' + gbp(r.seat.perMonth) + ' a user a month:', r.seat.source));
+  src.replaceChildren(...list);
+}
+const str = (x) => (typeof x === 'string' ? x : '');
+async function initCase() {
+  for (const id of CASE_IN) $(id).oninput = renderCase;
+  try { BASIS = await (await fetch('./vendor/basis.json', { cache: 'no-store' })).json(); } catch { BASIS = null; }
+  renderCase();
+}
+initCase().catch(() => {});
 async function main() {
   S.engine = await createEngine($('gl'), $('overlay'), { gpu: qs.get('gpu') === '0' ? false : undefined });
   $('engine').textContent = S.engine.kind === 'webgpu' ? 'WebGPU · the Living Visual: every cell, link and light is a real build event' : 'No WebGPU here: the same real build on a plainer 2D canvas (no video, no stand-in)';

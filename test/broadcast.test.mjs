@@ -4,7 +4,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import B, { secretsIn, redact, REDACTED, PRIVATE, roleOf, nameOf, ROLES, syllables, grade, MAX_GRADE, jargonIn, plain, GLOSS, say, narrate, failed,
-  beatsOf, kernelOf, PACE, durationOf, scriptOf, vttOf, shortsOf, labelFor, sameEvent, auditLog } from '../broadcast.mjs';
+  beatsOf, kernelOf, PACE, durationOf, scriptOf, vttOf, shortsOf, labelFor, reviewCase, sameEvent, auditLog } from '../broadcast.mjs';
 import K from '../kernel.mjs';
 
 const close = (a, b, eps = 1e-9) => assert.ok(Math.abs(a - b) < eps, a + ' vs ' + b);
@@ -227,6 +227,31 @@ test('B4: the label: LIVE only for the live tap, RECORDED for everything else, w
   assert.equal(labelFor('recorded', { repo: 'x', from: 'a' }), 'RECORDED · a replay of x, from its build log');
 });
 
+test("for a buyer: the time a broadcast gives back, at the sourced UK median wage, from the reader's own numbers", () => {
+  const basis = JSON.parse(readFileSync(new URL('../vendor/basis.json', import.meta.url), 'utf8'));
+  assert.equal(basis.wageMedianHourly.value, 19.67);
+  const SEAT = { product: 'Microsoft 365 Copilot (enterprise)', perMonth: 23.1, source: basis['seat.copilot'].source, cost: 415.8 };
+  const src = basis.wageMedianHourly.source;
+  const r = reviewCase(basis, { people: 3, hours: 6, reportHours: 0, share: 0.5, months: 6 });
+  assert.deepEqual(r, { ok: true, wage: 19.67, source: src, hoursToday: 108, costToday: 2124.36, hoursBack: 54, moneyBack: 1062.18, seat: SEAT });
+  assert.deepEqual(reviewCase(basis, { people: 3, hours: 6, reportHours: 4, share: 0.5, months: 6 }), { ok: true, wage: 19.67, source: src, hoursToday: 132, costToday: 2596.44, hoursBack: 66, moneyBack: 1298.22, seat: SEAT }, 'the builder\'s report hours count once, not per person');
+  assert.deepEqual(reviewCase(basis, { people: 1, hours: 0, reportHours: 0, share: 0, months: 1 }), { ok: true, wage: 19.67, source: src, hoursToday: 0, costToday: 0, hoursBack: 0, moneyBack: 0, seat: { ...SEAT, cost: 23.1 } });
+  assert.equal(reviewCase(basis, { people: 500, hours: 160, reportHours: 160, share: 1, months: 60 }).hoursBack, 4809600);
+  assert.equal(reviewCase(basis, { people: 2, hours: 1.5, reportHours: 0, share: 0.25, months: 2 }).moneyBack, 29.51, 'pennies rounded');
+  const WHY = 'people 1-500, hours 0-160 a month each, report hours 0-160 a month, share 0-100%, months 1-60';
+  const ok = { people: 3, hours: 6, reportHours: 4, share: 0.5, months: 6 };
+  for (const [k, v] of [['people', 0], ['people', 501], ['hours', -1], ['hours', 161], ['reportHours', -1], ['reportHours', 161], ['share', -0.1], ['share', 1.1], ['months', 0], ['months', 61], ['people', '3'], ['reportHours', undefined]]) {
+    assert.deepEqual(reviewCase(basis, { ...ok, [k]: v }), { ok: false, why: WHY }, k + '=' + v);
+  }
+  assert.deepEqual(reviewCase(basis, null), { ok: false, why: WHY });
+  for (const b of [null, {}, { wageMedianHourly: { value: 0 } }, { wageMedianHourly: { value: -2 } }, { wageMedianHourly: 'x' }, { wageMedianHourly: { value: NaN } }]) assert.deepEqual(reviewCase(b, ok), { ok: false, why: 'the sourced wage is missing' });
+  const bare = { wageMedianHourly: { value: 10 } };
+  assert.deepEqual(reviewCase(bare, { people: 1, hours: 1, reportHours: 0, share: 1, months: 1 }), { ok: true, wage: 10, source: '', hoursToday: 1, costToday: 10, hoursBack: 1, moneyBack: 10, seat: null }, 'a missing source or seat price is said as nothing, never invented');
+  for (const sv of [0, -1, '23.1', NaN, undefined]) assert.equal(reviewCase({ ...bare, 'seat.copilot': { value: sv, product: 'P' } }, ok).seat, null, 'seat ' + sv);
+  assert.equal(reviewCase({ ...bare, 'seat.copilot': 'x' }, ok).seat, null);
+  assert.deepEqual(reviewCase({ ...bare, 'seat.copilot': { value: 2 } }, { ...ok, people: 2, months: 3 }).seat, { product: '', perMonth: 2, source: '', cost: 12 });
+});
+
 test('B1: the audit: a logged event against one derived again; a redaction mark stands for what the raw text held', () => {
   const a = { k: 'commit', sha: 'abc', msg: 'Companion for ' + PRIVATE + ' done', files: [1] };
   assert.equal(sameEvent(a, { ...a, msg: 'Companion for secret-thing done' }), true);
@@ -261,7 +286,7 @@ test('the committed real episodes: every line plain, every failure a failure lin
 
 test('the default export carries every part, and garbage never throws', () => {
   assert.deepEqual(Object.keys(B), ['SECRETS', 'REDACTED', 'PRIVATE', 'secretsIn', 'redact', 'ROLES', 'roleOf', 'nameOf', 'syllables', 'grade', 'MAX_GRADE', 'JARGON', 'jargonIn', 'plain',
-    'GLOSS', 'say', 'narrate', 'failed', 'beatsOf', 'kernelOf', 'PACE', 'durationOf', 'scriptOf', 'vttOf', 'shortsOf', 'labelFor', 'sameEvent', 'auditLog']);
+    'GLOSS', 'say', 'narrate', 'failed', 'beatsOf', 'kernelOf', 'PACE', 'durationOf', 'scriptOf', 'vttOf', 'shortsOf', 'labelFor', 'reviewCase', 'sameEvent', 'auditLog']);
   const junk = [undefined, null, 0, NaN, '', 'x', [], {}, [1], { events: [null, 1, 'x', { k: 'commit' }] }, { beats: [null] }];
-  for (const a of junk) for (const b of junk) { secretsIn(a); redact(a, b); roleOf(a); nameOf(a); syllables(a); grade(a); jargonIn(a); plain(a); say(a); narrate(a); failed(a); beatsOf(a); kernelOf(a); durationOf(a); scriptOf(a); vttOf(a); shortsOf(a, b, b, b); labelFor(a, b); sameEvent(a, b); auditLog(a, b); }
+  for (const a of junk) for (const b of junk) { secretsIn(a); redact(a, b); roleOf(a); nameOf(a); syllables(a); grade(a); jargonIn(a); plain(a); say(a); narrate(a); failed(a); beatsOf(a); kernelOf(a); durationOf(a); scriptOf(a); vttOf(a); shortsOf(a, b, b, b); labelFor(a, b); reviewCase(a, b); sameEvent(a, b); auditLog(a, b); }
 });

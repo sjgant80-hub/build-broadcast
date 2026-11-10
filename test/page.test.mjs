@@ -33,15 +33,26 @@ test('ui gate: every element the glue names exists, and the page explains itself
   for (const id of new Set([...app.matchAll(/\$\('([^']+)'\)/g)].map((m) => m[1]))) assert.ok(ids.has(id), '#' + id + ' named by app.mjs is missing');
   for (const id of ['play', 'restart', 'voice', 'record', 'fit']) assert.match(app, new RegExp("\\$\\('" + id + "'\\)\\.onclick = "), '#' + id + ' is wired');
   assert.match(app, /\$\('scrub'\)\.oninput = /); assert.match(app, /\$\('speed'\)\.onchange = /);
-  for (const s of ['what', 'start', 'how', 'narrator', 'blueprint', 'adoption', 'limits']) assert.match(html, new RegExp('<section id="' + s + '">'), s);
-  assert.match(html, /<svg viewBox=/); assert.match(html, /Thomas Frumkin/);
+  for (const s of ['what', 'start', 'how', 'narrator', 'blueprint', 'business', 'adoption', 'limits']) assert.match(html, new RegExp('<section id="' + s + '">'), s);
+  assert.match(html, /<svg viewBox=/); assert.match(html, /Powered by the Konomi architecture, created by Thomas Frumkin\./);
   assert.deepEqual([...html.matchAll(/var\(--([a-z0-9-]+)\)/g)].map((m) => m[1]).filter((v) => !new RegExp('--' + v + ':').test(html)), [], 'every colour token is defined');
   assert.ok(B.plain('Watch a real build, explained simply.'));
+});
+test('the brochure: every role, the cost case from the law and the sourced basis only, the supplier as recorded, no price of ours', () => {
+  for (const who of ['CEO', 'CFO', 'COO', 'CTO / CISO', 'Delivery teams', 'Clients and stakeholders', 'Compliance and audit']) assert.match(html, new RegExp('<td>' + who), who);
+  for (const h of ['The cost case', 'The case for the board', 'Security, compliance and data protection', 'Risks and questions, answered straight', 'Support and ownership', 'Rolling it out']) assert.ok(html.includes(h), h);
+  assert.match(app, /const r = B\.reviewCase\(BASIS, \{/, 'the numbers come from the law');
+  assert.match(app, /fetch\('\.\/vendor\/basis\.json'/);
+  assert.match(html, /Supplied by <a href="https:\/\/www\.ai-nativesolutions\.com" rel="noopener">AI Native Solutions<\/a>; contact us through that site\. Support, SLA, warranty and liability are agreed per deployment, in each deployment's agreement\./);
+  const text = html.replace(/<[^>]+>/g, ' ');
+  assert.equal(/[£$€]\s?\d|\/mo\b|per seat|pricing|priceCurrency|"@type":\s*"Offer"/i.test(text), false, 'no price typed on the page');
+  assert.ok(app.includes("const CASE_IN = ['c-people', 'c-hours', 'c-report', 'c-share', 'c-months'];"), 'every input is read');
+  for (const id of ['c-people', 'c-hours', 'c-report', 'c-share', 'c-months']) { assert.match(html, new RegExp('<input id="' + id + '" type="number"'), id); assert.ok(app.includes("num('" + id + "')"), id + ' goes into the law'); }
 });
 test('the vendored files are FallGarden Live\'s, byte for byte, and nothing else is unpinned', () => {
   const src = JSON.parse(read('SOURCES.json'));
   assert.equal(src.from, 'sjgant80-hub/fallgarden @ 775c3fa (live/)');
-  assert.equal(src.files.length, 8);
+  assert.equal(src.files.length, 9);
   for (const f of src.files) assert.equal(createHash('sha256').update(readFileSync(new URL('../' + f.path, import.meta.url))).digest('hex'), f.sha256, f.path);
   const own = new Set(['index.html', 'app.mjs', 'broadcast.mjs', 'recorder.mjs', 'server.mjs', 'SOURCES.json', 'receipts.json', 'README.md', 'CLAIMS.md', 'RESULTS.md', 'LICENSE', 'package.json', '.gitignore', '.gitattributes']);
   const pinned = new Set(src.files.map((f) => f.path));

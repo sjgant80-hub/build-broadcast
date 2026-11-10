@@ -1,8 +1,8 @@
 # Build Broadcast: results (claims in CLAIMS.md, sealed 7081f1a), checked on 2026-11-09
 
 Live page: https://sjgant80-hub.github.io/build-broadcast/. CI (proof-of-play) is green on GitHub's runner. It runs:
-- every test (24)
-- witness v0.6 on the law, `broadcast.mjs`: 140/140, CLEAN
+- every test (26)
+- witness v0.6 on the law, `broadcast.mjs`: 149/149, CLEAN (140/140 before the cost case was added)
 - witness v0.6 on the recorder, `recorder.mjs`: 46/46, CLEAN
 - the receipts check
 - the B1 audit
@@ -66,6 +66,41 @@ in RECORDED mode never shows that label (a test).
 7. **A listener's read.** A local 7B, reading as a 12-year-old, understood all seven sample lines and found the gate's line
    the hardest ("broke kernel… 104 ways"). It now says what the gate does in plain words: it breaks the part on purpose,
    in 104 different ways, to see if the checks notice.
+
+## For a buyer: the brochure, walked cold (2026-11-10)
+
+The page now carries the full brochure (`#business`), and the roll-out (`#adoption`). It covers:
+- what it does
+- what it gives each role: CEO, CFO, COO, CTO/CISO, delivery teams, clients, compliance
+- a cost case, worked out by the law (`reviewCase` in `broadcast.mjs`, gated with the rest) from the reader's own numbers and the sourced basis, pinned byte for byte from FallGarden Live: the ONS 2025 median hourly wage and the Microsoft 365 Copilot seat it is compared with
+- the case for the board
+- security, compliance and data protection
+- the risks answered straight
+- support and ownership, as recorded: AI Native Solutions, terms agreed per deployment, MIT
+
+No price of ours appears, and a test fails the page if one does.
+
+**The walkthrough.** A local 7B (qwen2.5:7b, on this laptop) read the page cold as a CFO, a CISO and a COO, giving 18 points, then as a head of procurement, giving 5.
+
+Fixed on the page:
+- the running cost, and what it needs. Git and the GitHub command line were missing from "Node.js and a browser"; procurement caught it.
+- how big a build can be
+- builds on CI other than GitHub
+- which browsers
+- who needs training
+- how teams see it
+- the exact secret patterns
+- how the server is held to this machine
+- retention
+- what the audit prints
+- what mutation-tested means
+- who maintains it without us
+
+Not fixed, because only Simon holds them: SLA and warranty terms (agreed per deployment, as recorded) and a client case study (none yet, and the page says so). Rejected as already answered: the steps to make an episode, and captions (now named as WebVTT).
+
+**Found by rereading the page against these results.** Two older lines claimed more than B1 and B4 hold, and are corrected:
+- "the same log gives the same frames": the frames match to within one shade
+- "re-derives every event on GitHub's own computer": every event except the gate results, which that computer cannot read
 
 ## Kept to Simon
 
