@@ -80,7 +80,7 @@ The page now carries the full brochure (`#business`), and the roll-out (`#adopti
 
 No price of ours appears, and a test fails the page if one does.
 
-**The walkthrough.** A local 7B (qwen2.5:7b, on this laptop) read the page cold as a CFO, a CISO and a COO, giving 18 points, then as a head of procurement, giving 5.
+**The walkthrough.** A local 7B (qwen2.5:7b, on this laptop) read the page cold as a CFO, a CISO and a COO, giving 18 points, then as a head of procurement, giving 5. After the push, a non-executive director read the live page's text, giving 5. Two of those were real and small, and are now answered: what happens if it goes down (there is no service), and how it handles many builds.
 
 Fixed on the page:
 - the running cost, and what it needs. Git and the GitHub command line were missing from "Node.js and a browser"; procurement caught it.
